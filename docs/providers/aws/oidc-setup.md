@@ -1,148 +1,288 @@
 ---
 sidebar_position: 1
-title: AWS OIDC Provider Setup
-description: Configure AWS to accept OpenID Connect (OIDC) authentication from external services like GitHub Actions, eliminating the need for long-lived credentials
-keywords: [aws, oidc, openid connect, iam, authentication, secretless, github actions, trust policy]
+title: AWS - Secretless Authentication
+description: Configure AWS to accept OIDC-based secretless authentication from external services without storing long-lived credentials
+keywords: [aws, oidc, secretless, authentication, iam, trust policy, web identity]
 ---
 
-# AWS OIDC Provider Setup
+# AWS - Secretless Authentication
 
-Learn how to configure AWS to accept OpenID Connect (OIDC) authentication from external services, enabling secretless workflows without storing long-lived credentials.
+Configure AWS to accept OpenID Connect (OIDC) authentication from external services, enabling secretless workflows without storing long-lived credentials.
 
 ## Overview
 
-OpenID Connect (OIDC) allows external services to authenticate with AWS using short-lived tokens instead of permanent access keys. The authentication flow works as follows:
+OpenID Connect (OIDC) allows external services to authenticate with AWS using short-lived tokens instead of permanent access keys. AWS validates these tokens and issues temporary credentials with configurable permissions and duration.
 
-1. **Token Generation**: External service (e.g., GitHub Actions) creates a JWT (JSON Web Token)
-2. **JWT Submission**: The service sends the token to AWS's OIDC endpoint
-3. **Role Assumption**: AWS validates the token against configured trust policies
-4. **Credential Exchange**: AWS returns temporary credentials (typically valid for 1 hour)
+**Benefits:**
+- No static AWS credentials stored in external systems
+- Automatic credential expiration (15 minutes to 12 hours)
+- Fine-grained access control via trust policies
+- Complete audit trail via CloudTrail
+- Centralized credential management in AWS IAM
 
-This eliminates the need to store AWS access keys in external systems, significantly reducing security risk.
+## How It Works
 
-## OIDC Identity Provider Setup
+```mermaid
+sequenceDiagram
+    participant External as External Service
+    participant OIDC as OIDC Provider
+    participant STS as AWS STS
+    participant IAM as AWS IAM
+    participant Resource as AWS Resources
 
-The OIDC Identity Provider must be created once per AWS account and can be reused across multiple IAM roles.
+    External->>External: Generate OIDC Token
+    External->>STS: AssumeRoleWithWebIdentity<br/>(Token + Role ARN)
+    STS->>OIDC: Validate Token Signature
+    OIDC->>STS: Token Valid
+    STS->>IAM: Check Trust Policy
+    IAM->>STS: Policy Allows
+    STS->>External: Temporary Credentials<br/>(AccessKey, SecretKey, SessionToken)
+    External->>Resource: Access with Credentials
+```
 
-### Using AWS Console
+**Flow Steps:**
+1. **Token Generation**: External service generates a JWT with identity claims
+2. **Token Validation**: AWS validates the token signature against the OIDC provider's public keys
+3. **Trust Policy Check**: AWS evaluates trust policy conditions against token claims
+4. **Credential Issuance**: AWS STS returns temporary credentials (typically valid for 1 hour)
+
+## Configuration Requirements
+
+### Prerequisites
+
+- AWS account with IAM permissions to create OIDC providers and roles
+- OIDC provider URL from your external service
+- Understanding of required token claims (issuer, subject, audience)
+
+### Required Attributes
+
+| Attribute | Description | Example | Required |
+|-----------|-------------|---------|----------|
+| **Provider URL** | OIDC issuer URL | `https://token.example.com` | Yes |
+| **Audience** | Token audience claim | `sts.amazonaws.com` | Yes |
+| **Thumbprint** | SSL certificate thumbprint | Auto-generated or manual | Optional* |
+| **Role ARN** | IAM role to assume | `arn:aws:iam::123456789012:role/MyRole` | Yes |
+
+*AWS now auto-validates many providers; thumbprint may not be required.
+
+### Trust Policy Selectors
+
+Available JWT claims for filtering in trust policies:
+
+| Selector | Description | Example Value | Use Case |
+|----------|-------------|---------------|----------|
+| `{provider}:aud` | Token audience | `sts.amazonaws.com` | Validate intended recipient |
+| `{provider}:sub` | Subject identifier | `system:serviceaccount:prod` | Filter by identity |
+| `{provider}:iss` | Token issuer | `https://token.example.com` | Implicit (provider URL) |
+| Custom claims | Provider-specific | `organization_id`, `project_path` | Fine-grained filtering |
+
+**Note**: `{provider}` is the hostname of your OIDC provider (e.g., `token.example.com`).
+
+## SDK and CLI Usage
+
+### Environment Variables
+
+AWS SDKs automatically detect web identity credentials via:
+
+| Variable | Description | Example | SDK Support |
+|----------|-------------|---------|-------------|
+| `AWS_ROLE_ARN` | Role to assume | `arn:aws:iam::123456789012:role/MyRole` | All AWS SDKs |
+| `AWS_WEB_IDENTITY_TOKEN_FILE` | Path to token file | `/tmp/token` | All AWS SDKs |
+| `AWS_REGION` | AWS region | `us-east-1` | All AWS SDKs |
+| `AWS_ROLE_SESSION_NAME` | Session identifier | `my-session` | Optional |
+
+### SDK Configuration
+
+SDKs automatically use web identity when these variables are set:
+
+```python
+# Python (boto3) - automatic
+import boto3
+
+# No explicit configuration needed
+s3 = boto3.client('s3')
+s3.list_buckets()
+```
+
+```javascript
+// Node.js (AWS SDK v3) - automatic
+import { S3Client, ListBucketsCommand } from '@aws-sdk/client-s3';
+
+// No explicit configuration needed
+const client = new S3Client({});
+const response = await client.send(new ListBucketsCommand({}));
+```
+
+### CLI Configuration
+
+```bash
+# Set environment variables
+export AWS_ROLE_ARN="arn:aws:iam::123456789012:role/MyRole"
+export AWS_WEB_IDENTITY_TOKEN_FILE="/tmp/token"
+export AWS_REGION="us-east-1"
+
+# Use AWS CLI normally
+aws sts get-caller-identity
+aws s3 ls
+```
+
+Or use the CLI directly:
+
+```bash
+aws sts assume-role-with-web-identity \
+  --role-arn arn:aws:iam::123456789012:role/MyRole \
+  --role-session-name my-session \
+  --web-identity-token file:///tmp/token \
+  --duration-seconds 3600
+```
+
+## Setup Guide
+
+### Step 1: Create OIDC Identity Provider
+
+Register your external OIDC provider with AWS.
+
+**Using AWS Console:**
 
 1. Navigate to **IAM → Identity Providers → Add Provider**
 2. Select **OpenID Connect**
-3. **Provider URL**: Enter the OIDC provider URL (e.g., `https://token.actions.githubusercontent.com` for GitHub Actions)
-4. **Audience**: Enter `sts.amazonaws.com` (for standard AWS regions)
-5. Click **Add provider**
+3. **Provider URL**: Enter your OIDC issuer URL (e.g., `https://token.example.com`)
+4. **Audience**: Enter the audience claim (typically `sts.amazonaws.com`)
+5. Click **Get thumbprint** (AWS auto-validates)
+6. Click **Add provider**
 
-### Using AWS CLI
+**Using AWS CLI:**
 
 ```bash
 aws iam create-open-id-connect-provider \
-  --url https://token.actions.githubusercontent.com \
-  --client-id-list sts.amazonaws.com \
-  --thumbprint-list 6938fd4d98bab03faadb97b34396831e3780aea1
+  --url https://token.example.com \
+  --client-id-list sts.amazonaws.com
 ```
 
-**Note**: As of July 2023, AWS automatically trusts GitHub's root CA, making the thumbprint optional (but still accepted for backwards compatibility).
+**Using Terraform:**
 
-### Verify Provider Creation
+```hcl
+resource "aws_iam_openid_connect_provider" "oidc_provider" {
+  url             = "https://token.example.com"
+  client_id_list  = ["sts.amazonaws.com"]
+  thumbprint_list = []  # AWS auto-validates most providers
+}
+```
+
+### Step 2: Create IAM Role with Trust Policy
+
+Create a role that trusts your OIDC provider.
+
+**Basic Trust Policy:**
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Federated": "arn:aws:iam::<ACCOUNT_ID>:oidc-provider/token.example.com"
+      },
+      "Action": "sts:AssumeRoleWithWebIdentity",
+      "Condition": {
+        "StringEquals": {
+          "token.example.com:aud": "sts.amazonaws.com",
+          "token.example.com:sub": "system:serviceaccount:production:app-deployer"
+        }
+      }
+    }
+  ]
+}
+```
+
+**Subject Claim Patterns:**
+
+Configure the `sub` condition to match your identity provider's format:
+
+| Pattern Type | Example | Security Level |
+|-------------|---------|----------------|
+| Specific identity | `system:serviceaccount:prod:deployer` | Highest |
+| Namespace scoped | `organization:myorg:project:myproject` | High |
+| Wildcard (scoped) | `organization:myorg:project:*` | Medium |
+| Wildcard (broad) | `organization:myorg:*` | Lower |
+
+:::danger Critical Security
+Always validate both `aud` and `sub` claims. Without subject filtering, any authenticated user of your OIDC provider could assume the role.
+:::
+
+**Create Role via CLI:**
 
 ```bash
-aws iam list-open-id-connect-providers
-```
-
-Expected output includes:
-```
-arn:aws:iam::<ACCOUNT_ID>:oidc-provider/token.actions.githubusercontent.com
-```
-
-## IAM Role Configuration
-
-### Trust Policy Structure
-
-The trust policy determines which external entities can assume the role. This is the most critical security component.
-
-**Basic Trust Policy**:
-
-```json
+# Save trust policy
+cat > trust-policy.json <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [
     {
       "Effect": "Allow",
       "Principal": {
-        "Federated": "arn:aws:iam::<ACCOUNT_ID>:oidc-provider/token.actions.githubusercontent.com"
+        "Federated": "arn:aws:iam::<ACCOUNT_ID>:oidc-provider/token.example.com"
       },
       "Action": "sts:AssumeRoleWithWebIdentity",
       "Condition": {
         "StringEquals": {
-          "token.actions.githubusercontent.com:aud": "sts.amazonaws.com",
-          "token.actions.githubusercontent.com:sub": "repo:<ORG>/<REPO>:ref:refs/heads/<BRANCH>"
+          "token.example.com:aud": "sts.amazonaws.com",
+          "token.example.com:sub": "system:serviceaccount:production:deployer"
         }
       }
     }
   ]
 }
+EOF
+
+# Create role
+aws iam create-role \
+  --role-name OIDCDeployRole \
+  --assume-role-policy-document file://trust-policy.json \
+  --description "Role for OIDC-based deployments" \
+  --max-session-duration 3600
 ```
 
-Replace:
-- `<ACCOUNT_ID>` - Your AWS account ID
-- `<ORG>/<REPO>` - GitHub organization and repository name
-- `<BRANCH>` - Branch name (e.g., `main`)
+**Create Role via Terraform:**
 
-### Subject Claim Scoping
+```hcl
+data "aws_iam_policy_document" "oidc_trust" {
+  statement {
+    effect  = "Allow"
+    actions = ["sts:AssumeRoleWithWebIdentity"]
 
-The `sub` (subject) claim is crucial for security. It determines which external entities can assume the role.
-
-| Scope Type | Subject Pattern | Use Case | Security Level |
-|------------|----------------|----------|----------------|
-| Specific Branch | `repo:<org>/<repo>:ref:refs/heads/<branch>` | Production deployments from main | Highest |
-| Specific Environment | `repo:<org>/<repo>:environment:<env>` | Environment-specific deployments | High |
-| Repository-wide | `repo:<org>/<repo>:*` | General repository access | Medium |
-| Pull Requests | `repo:<org>/<repo>:pull_request` | PR validation workflows | Medium |
-| Specific Tag | `repo:<org>/<repo>:ref:refs/tags/<tag>` | Release workflows | High |
-| Organization-wide | `repo:<org>/*:*` | Shared organizational resources | Lower |
-
-**Security Critical**: Without a subject condition, ANY GitHub user or repository could potentially assume the role. Always include specific subject constraints.
-
-### Multiple Conditions Example
-
-Allow multiple branches or environments to assume the same role:
-
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "Federated": "arn:aws:iam::<ACCOUNT_ID>:oidc-provider/token.actions.githubusercontent.com"
-      },
-      "Action": "sts:AssumeRoleWithWebIdentity",
-      "Condition": {
-        "StringEquals": {
-          "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
-        },
-        "StringLike": {
-          "token.actions.githubusercontent.com:sub": [
-            "repo:myorg/myrepo:ref:refs/heads/main",
-            "repo:myorg/myrepo:ref:refs/heads/develop",
-            "repo:myorg/myrepo:environment:production"
-          ]
-        }
-      }
+    principals {
+      type        = "Federated"
+      identifiers = [aws_iam_openid_connect_provider.oidc_provider.arn]
     }
-  ]
+
+    condition {
+      test     = "StringEquals"
+      variable = "token.example.com:aud"
+      values   = ["sts.amazonaws.com"]
+    }
+
+    condition {
+      test     = "StringEquals"
+      variable = "token.example.com:sub"
+      values   = ["system:serviceaccount:production:deployer"]
+    }
+  }
+}
+
+resource "aws_iam_role" "oidc_role" {
+  name                 = "OIDCDeployRole"
+  assume_role_policy   = data.aws_iam_policy_document.oidc_trust.json
+  max_session_duration = 3600
 }
 ```
 
-## Creating IAM Roles
+### Step 3: Attach Permissions Policy
 
-### Step 1: Create Trust Policy File
+Grant the role permissions to access AWS resources.
 
-Save the trust policy as `trust-policy.json` with your specific values.
-
-### Step 2: Create Permissions Policy
-
-Create a permissions policy following the principle of least privilege:
+**Example Permissions Policy:**
 
 ```json
 {
@@ -153,135 +293,103 @@ Create a permissions policy following the principle of least privilege:
       "Action": [
         "s3:PutObject",
         "s3:GetObject",
-        "s3:DeleteObject"
+        "s3:ListBucket"
       ],
-      "Resource": "arn:aws:s3:::my-deployment-bucket/*"
-    },
-    {
-      "Effect": "Allow",
-      "Action": "s3:ListBucket",
-      "Resource": "arn:aws:s3:::my-deployment-bucket"
+      "Resource": [
+        "arn:aws:s3:::my-deployment-bucket",
+        "arn:aws:s3:::my-deployment-bucket/*"
+      ]
     }
   ]
 }
 ```
 
-### Step 3: Create the Role
+**Attach via CLI:**
 
 ```bash
-# Create the role with trust policy
-aws iam create-role \
-  --role-name GitHubActionsDeployRole \
-  --assume-role-policy-document file://trust-policy.json \
-  --description "Role for GitHub Actions deployments" \
-  --max-session-duration 3600
+# Create policy file
+cat > permissions-policy.json <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": ["s3:PutObject", "s3:GetObject", "s3:ListBucket"],
+      "Resource": [
+        "arn:aws:s3:::my-deployment-bucket",
+        "arn:aws:s3:::my-deployment-bucket/*"
+      ]
+    }
+  ]
+}
+EOF
 
-# Attach permissions policy
+# Attach inline policy
 aws iam put-role-policy \
-  --role-name GitHubActionsDeployRole \
+  --role-name OIDCDeployRole \
   --policy-name DeploymentPermissions \
   --policy-document file://permissions-policy.json
-
-# Get the role ARN (save this for your workflows)
-aws iam get-role \
-  --role-name GitHubActionsDeployRole \
-  --query 'Role.Arn' \
-  --output text
 ```
 
-## CloudFormation Template
+**Attach via Terraform:**
 
-Automate OIDC setup with CloudFormation:
+```hcl
+resource "aws_iam_role_policy" "oidc_permissions" {
+  name = "DeploymentPermissions"
+  role = aws_iam_role.oidc_role.id
 
-```yaml
-Parameters:
-  GitHubOrg:
-    Type: String
-    Description: GitHub organization name
-  RepositoryName:
-    Type: String
-    Description: GitHub repository name
-  OIDCProviderArn:
-    Description: ARN for the GitHub OIDC Provider (leave empty to create new)
-    Default: ""
-    Type: String
-  OIDCAudience:
-    Description: Audience supplied to configure-aws-credentials
-    Default: "sts.amazonaws.com"
-    Type: String
-
-Conditions:
-  CreateOIDCProvider: !Equals
-    - !Ref OIDCProviderArn
-    - ""
-
-Resources:
-  GitHubOIDCProvider:
-    Type: AWS::IAM::OIDCProvider
-    Condition: CreateOIDCProvider
-    Properties:
-      Url: https://token.actions.githubusercontent.com
-      ClientIdList:
-        - sts.amazonaws.com
-      ThumbprintList:
-        - 6938fd4d98bab03faadb97b34396831e3780aea1
-
-  GitHubActionsRole:
-    Type: AWS::IAM::Role
-    Properties:
-      RoleName: GitHubActionsRole
-      AssumeRolePolicyDocument:
-        Statement:
-          - Effect: Allow
-            Action: sts:AssumeRoleWithWebIdentity
-            Principal:
-              Federated: !If
-                - CreateOIDCProvider
-                - !Ref GitHubOIDCProvider
-                - !Ref OIDCProviderArn
-            Condition:
-              StringEquals:
-                token.actions.githubusercontent.com:aud: !Ref OIDCAudience
-              StringLike:
-                token.actions.githubusercontent.com:sub: !Sub repo:${GitHubOrg}/${RepositoryName}:*
-      ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/ReadOnlyAccess  # Replace with least-privilege policies
-      MaxSessionDuration: 3600
-
-Outputs:
-  RoleArn:
-    Description: ARN of the IAM role for GitHub Actions
-    Value: !GetAtt GitHubActionsRole.Arn
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "s3:PutObject",
+          "s3:GetObject",
+          "s3:ListBucket"
+        ]
+        Resource = [
+          "arn:aws:s3:::my-deployment-bucket",
+          "arn:aws:s3:::my-deployment-bucket/*"
+        ]
+      }
+    ]
+  })
+}
 ```
 
-Deploy the template:
+## Verification
+
+Test the OIDC authentication:
 
 ```bash
-aws cloudformation create-stack \
-  --stack-name github-oidc-setup \
-  --template-body file://oidc-stack.yaml \
-  --parameters ParameterKey=GitHubOrg,ParameterValue=myorg \
-               ParameterKey=RepositoryName,ParameterValue=myrepo \
-  --capabilities CAPABILITY_NAMED_IAM
+# Assuming you have a token file at /tmp/token
+aws sts assume-role-with-web-identity \
+  --role-arn arn:aws:iam::123456789012:role/OIDCDeployRole \
+  --role-session-name test-session \
+  --web-identity-token file:///tmp/token
+
+# Expected output:
+# {
+#   "Credentials": {
+#     "AccessKeyId": "ASIA...",
+#     "SecretAccessKey": "...",
+#     "SessionToken": "...",
+#     "Expiration": "2025-01-01T12:00:00Z"
+#   },
+#   "SubjectFromWebIdentityToken": "system:serviceaccount:production:deployer",
+#   "AssumedRoleUser": {
+#     "AssumedRoleId": "AROA...:test-session",
+#     "Arn": "arn:aws:sts::123456789012:assumed-role/OIDCDeployRole/test-session"
+#   }
+# }
 ```
 
-## AWS Partition-Specific Configuration
-
-Different AWS partitions require different audience values:
-
-| Partition | Regions | Audience Value | Provider ARN Format |
-|-----------|---------|----------------|---------------------|
-| Standard AWS | us-east-1, eu-west-1, etc. | `sts.amazonaws.com` | `arn:aws:iam::...` |
-| AWS China | cn-north-1, cn-northwest-1 | `sts.amazonaws.com.cn` | `arn:aws-cn:iam::...` |
-| AWS GovCloud | us-gov-west-1, us-gov-east-1 | `sts.amazonaws-us-gov.com` | `arn:aws-us-gov:iam::...` |
-
-Ensure your trust policy and external configuration use matching audience values for your partition.
-
-## Security Best Practices
+## Best Practices
 
 ### Least Privilege Permissions
 
-Grant only the minimum permissions required:
+Grant only the minimum required permissions:
 
 ```json
 {
@@ -289,40 +397,38 @@ Grant only the minimum permissions required:
   "Statement": [
     {
       "Effect": "Allow",
-      "Action": [
-        "s3:PutObject"
-      ],
+      "Action": ["s3:PutObject"],
       "Resource": "arn:aws:s3:::my-bucket/deployments/*"
     }
   ]
 }
 ```
 
-**Avoid**:
+**Avoid:**
 - Wildcard actions (`s3:*`, `*`)
 - Wildcard resources (`*`)
 - Administrative policies (`AdministratorAccess`)
 
 ### Scope Trust Policies Tightly
 
-**Bad** (allows any GitHub repository):
+**Don't do this** (allows anyone from the provider):
 ```json
 {
   "Condition": {
     "StringEquals": {
-      "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
+      "token.example.com:aud": "sts.amazonaws.com"
     }
   }
 }
 ```
 
-**Good** (specific repository and branch):
+**Do this** (specific identity):
 ```json
 {
   "Condition": {
     "StringEquals": {
-      "token.actions.githubusercontent.com:aud": "sts.amazonaws.com",
-      "token.actions.githubusercontent.com:sub": "repo:myorg/myrepo:ref:refs/heads/main"
+      "token.example.com:aud": "sts.amazonaws.com",
+      "token.example.com:sub": "system:serviceaccount:prod:deployer"
     }
   }
 }
@@ -332,21 +438,23 @@ Grant only the minimum permissions required:
 
 Create different roles for dev, staging, and production:
 
-- `GitHubActions-Dev-Role` - Scoped to develop branch
-- `GitHubActions-Staging-Role` - Scoped to staging environment
-- `GitHubActions-Prod-Role` - Scoped to production environment with tighter permissions
+- `OIDC-Dev-Role` - Scoped to development identities
+- `OIDC-Staging-Role` - Scoped to staging identities
+- `OIDC-Prod-Role` - Scoped to production with tighter permissions
 
 ### Session Duration Limits
 
 Configure appropriate maximum session durations:
 
-- **Short-lived deployments**: 900-1800 seconds (15-30 minutes)
-- **Standard deployments**: 3600 seconds (1 hour, default)
-- **Long-running processes**: Up to 43200 seconds (12 hours, maximum)
+| Use Case | Duration | Setting |
+|----------|----------|---------|
+| Short operations | 15-30 minutes | `900-1800` |
+| Standard deployments | 1 hour | `3600` (default) |
+| Long-running tasks | 2-12 hours | `7200-43200` |
 
 ```bash
 aws iam update-role \
-  --role-name GitHubActionsDeployRole \
+  --role-name OIDCDeployRole \
   --max-session-duration 3600
 ```
 
@@ -354,88 +462,120 @@ aws iam update-role \
 
 Monitor all role assumptions and API calls:
 
-1. Ensure CloudTrail is enabled in your account
-2. Configure CloudWatch alerts for suspicious activity
-3. Regularly audit role assumptions
-
-Query recent role assumptions:
-
 ```bash
+# Query recent role assumptions
 aws cloudtrail lookup-events \
   --lookup-attributes AttributeKey=EventName,AttributeValue=AssumeRoleWithWebIdentity \
   --max-results 10 \
-  --query 'Events[].{Time:EventTime,User:Username}' \
-  --output table
+  --query 'Events[].{Time:EventTime,Identity:Username,Role:Resources[0].ResourceName}'
 ```
 
 ### Use Resource Tags
 
-Tag roles for easier management:
+Tag roles for easier management and cost allocation:
 
 ```bash
 aws iam tag-role \
-  --role-name GitHubActionsDeployRole \
+  --role-name OIDCDeployRole \
   --tags Key=Environment,Value=Production \
          Key=ManagedBy,Value=Terraform \
-         Key=Purpose,Value=GitHubActionsOIDC
+         Key=AuthMethod,Value=OIDC
 ```
 
-### Service Control Policies
+## Security Considerations
 
-Use AWS Organizations SCPs for additional guardrails:
+:::danger Critical Security Settings
 
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Deny",
-      "Action": [
-        "iam:DeleteRole",
-        "iam:UpdateAssumeRolePolicy"
-      ],
-      "Resource": "arn:aws:iam::*:role/GitHubActions*",
-      "Condition": {
-        "StringNotEquals": {
-          "aws:PrincipalArn": "arn:aws:iam::*:role/AdminRole"
-        }
-      }
-    }
-  ]
-}
+1. **Always Validate Audience**: Specify and validate the `aud` claim to prevent token reuse
+2. **Use Specific Subject Filters**: Never use wildcard-only trust policies
+3. **Enable MFA for Sensitive Operations**: Consider adding MFA conditions for destructive actions
+4. **Rotate Provider Certificates**: Monitor and update OIDC provider certificates as needed
+
+:::
+
+### Trust Policy Security Levels
+
+| Configuration | Security | When to Use |
+|--------------|----------|-------------|
+| `aud` + specific `sub` | ✓✓✓ Highest | Production environments |
+| `aud` + scoped `sub` wildcard | ✓✓ High | Multiple identities in same namespace |
+| `aud` + broad `sub` wildcard | ⚠️ Medium | Development/testing only |
+| `aud` only | ❌ Insecure | Never use |
+
+### Monitoring and Alerts
+
+Set up CloudWatch alarms for:
+- Failed `AssumeRoleWithWebIdentity` attempts
+- Role assumptions from unexpected subjects
+- High volume of role assumptions
+- Permission denied errors
+
+## AWS Partition-Specific Configuration
+
+Different AWS partitions require different audience values:
+
+| Partition | Regions | Audience Value | Provider ARN |
+|-----------|---------|----------------|--------------|
+| Standard AWS | us-east-1, eu-west-1, etc. | `sts.amazonaws.com` | `arn:aws:iam::...` |
+| AWS China | cn-north-1, cn-northwest-1 | `sts.amazonaws.com.cn` | `arn:aws-cn:iam::...` |
+| AWS GovCloud | us-gov-west-1, us-gov-east-1 | `sts.amazonaws-us-gov.com` | `arn:aws-us-gov:iam::...` |
+
+## Troubleshooting
+
+### Issue: Token Validation Failed
+
+**Symptoms:**
+- Error: "Invalid identity token"
+- Error: "Token signature verification failed"
+
+**Solutions:**
+1. Verify the OIDC provider URL exactly matches the token issuer
+2. Ensure the provider is registered in AWS IAM
+3. Check that the provider's JWKS endpoint is accessible
+4. Verify the token hasn't expired
+
+### Issue: Access Denied
+
+**Symptoms:**
+- Error: "User is not authorized to perform: sts:AssumeRoleWithWebIdentity"
+- Authentication succeeds but operations fail
+
+**Solutions:**
+1. Check trust policy `sub` claim matches your token
+2. Verify `aud` claim matches trust policy
+3. Review role permissions policy
+4. Ensure no SCPs are blocking the action
+
+### Issue: Provider Not Found
+
+**Symptoms:**
+- Error: "OIDC provider not found"
+- Error: "Invalid provider ARN"
+
+**Solutions:**
+```bash
+# List registered providers
+aws iam list-open-id-connect-providers
+
+# Check provider details
+aws iam get-open-id-connect-provider \
+  --open-id-connect-provider-arn arn:aws:iam::123456789012:oidc-provider/token.example.com
 ```
 
-## Common Issues
+## Related Integration Guides
 
-### Issue: Role name "GitHubActions" fails
+Use AWS with secretless authentication from:
 
-**Problem**: Some configurations report failures with role names containing "GitHubActions".
+### CI/CD Tools
+- [GitHub Actions → AWS](../../guides/github-actions-to-aws.md)
+- [Buildkite → AWS](../../guides/buildkite-to-aws.md)
 
-**Solution**: Use a different naming pattern:
-- `GHA-Deploy-Role`
-- `CI-Deployment-Role`
-- `GitHub-CI-Role`
-
-### Issue: Trust policy too broad
-
-**Problem**: Role being assumed from unexpected repositories.
-
-**Solution**: Review and tighten the `sub` condition in your trust policy. Use specific branch or environment patterns instead of wildcards.
-
-### Issue: Session duration errors
-
-**Problem**: Credentials expire before workflow completes.
-
-**Solution**: Increase the role's maximum session duration and specify longer duration in the workflow configuration.
-
-## Next Steps
-
-- **For GitHub Actions**: See [GitHub Actions Initiator Documentation](../../initiators/ci-tools/github-actions.md)
-- **Integration Guide**: Follow the [GitHub Actions to AWS Integration Guide](../../guides/github-actions-to-aws.md)
-- **Other Providers**: Check documentation for other service providers that support AWS OIDC
+### Infrastructure as Code
+- [Terraform Cloud → AWS](../../guides/terraform-cloud-to-aws.md)
 
 ## Additional Resources
 
 - [AWS IAM OIDC Identity Providers Documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc.html)
-- [AWS Security Blog: Use IAM roles to connect GitHub Actions](https://aws.amazon.com/blogs/security/use-iam-roles-to-connect-github-actions-to-actions-in-aws/)
-- [AWS STS AssumeRoleWithWebIdentity API Reference](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRoleWithWebIdentity.html)
+- [AWS STS AssumeRoleWithWebIdentity API](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRoleWithWebIdentity.html)
+- [AWS Security Blog: OIDC Authentication](https://aws.amazon.com/blogs/security/)
+- [OpenID Connect Specification](https://openid.net/specs/openid-connect-core-1_0.html)
