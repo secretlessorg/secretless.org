@@ -694,7 +694,7 @@ echo "  kubectl exec my-app-test-pod -- gcloud storage buckets list"
 
 ### Learn More
 
-- **Kubernetes Initiator Documentation**: [Learn about Kubernetes workload identity](../initiators/compute-runtime/kubernetes.md)
+- **Kubernetes Initiator Documentation**: [Learn about Kubernetes workload identity](/docs/initiators/compute-runtime/kubernetes)
 - **GCP Provider Documentation**: [Learn about GCP Workload Identity Federation](../providers/cloud-platforms/gcp/workload-identity-federation.md)
 
 ## Additional Resources

@@ -704,7 +704,7 @@ output "serviceaccount_name" {
 
 ### Learn More
 
-- **Kubernetes Initiator Documentation**: [Learn about Kubernetes workload identity](../initiators/compute-runtime/kubernetes.md)
+- **Kubernetes Initiator Documentation**: [Learn about Kubernetes workload identity](/docs/initiators/compute-runtime/kubernetes)
 - **Azure Provider Documentation**: [Learn about Azure Federated Credentials](../providers/cloud-platforms/azure/federated-credentials.md)
 
 ## Additional Resources

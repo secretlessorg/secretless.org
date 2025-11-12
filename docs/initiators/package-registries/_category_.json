@@ -1,0 +1,8 @@
+{
+  "label": "Package Registries",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Package registries that support secretless publishing using OIDC tokens. Publish packages securely without storing long-lived API tokens in your CI/CD pipelines."
+  }
+}
