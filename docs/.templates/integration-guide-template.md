@@ -1,12 +1,12 @@
 ---
 title: [Initiator] to [Provider] - Secretless Authentication
-description: Complete guide to set up OIDC authentication between [Initiator] and [Provider] without storing long-lived credentials
-keywords: [initiator-name, provider-name, oidc, secretless, authentication, integration]
+description: Complete guide to set up secretless authentication between [Initiator] and [Provider] without storing long-lived credentials
+keywords: [initiator-name, provider-name, secretless, authentication, oidc, integration]
 ---
 
 # [Initiator] to [Provider] - Secretless Authentication
 
-Connect [Initiator] to [Provider] using OpenID Connect (OIDC) for secretless authentication - no long-lived credentials required.
+Connect [Initiator] to [Provider] using secretless authentication via OpenID Connect (OIDC) - no long-lived credentials required.
 
 ## Overview
 

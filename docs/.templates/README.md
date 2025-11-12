@@ -172,8 +172,8 @@ keywords: [keyword1, keyword2, keyword3, ...]  # 5-10 relevant terms
 ---
 sidebar_position: 1
 title: AWS - Secretless Authentication
-description: Configure AWS to accept OIDC-based secretless authentication from external services
-keywords: [aws, oidc, secretless, authentication, iam, trust policy]
+description: Configure AWS to accept secretless authentication from external services using OIDC
+keywords: [aws, secretless, authentication, oidc, iam, trust policy]
 ---
 ```
 
@@ -181,9 +181,9 @@ keywords: [aws, oidc, secretless, authentication, iam, trust policy]
 ```yaml
 ---
 sidebar_position: 1
-title: GitHub Actions - OIDC Token Generation
-description: Use GitHub Actions to generate OIDC tokens for secretless authentication with cloud providers
-keywords: [github actions, oidc, jwt, identity token, claims, ci cd]
+title: GitHub Actions - Secretless Authentication
+description: Use GitHub Actions for secretless authentication with cloud providers using OIDC tokens
+keywords: [github actions, secretless, authentication, oidc, jwt, identity token]
 ---
 ```
 
@@ -191,8 +191,8 @@ keywords: [github actions, oidc, jwt, identity token, claims, ci cd]
 ```yaml
 ---
 title: GitHub Actions to AWS - Secretless Authentication
-description: Complete guide to set up OIDC authentication between GitHub Actions and AWS without storing long-lived credentials
-keywords: [github actions, aws, oidc, secretless, authentication, integration]
+description: Complete guide to set up secretless authentication between GitHub Actions and AWS without storing long-lived credentials
+keywords: [github actions, aws, secretless, authentication, oidc, integration]
 ---
 ```
 

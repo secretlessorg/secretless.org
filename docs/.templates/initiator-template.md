@@ -1,11 +1,11 @@
 ---
 sidebar_position: 1
-title: [Initiator Name] - OIDC Token Generation
-description: Use [Initiator Name] to generate OIDC tokens for secretless authentication with cloud providers
-keywords: [initiator-name, oidc, jwt, identity token, claims]
+title: [Initiator Name] - Secretless Authentication
+description: Use [Initiator Name] for secretless authentication with cloud providers using OIDC tokens
+keywords: [initiator-name, secretless, oidc, jwt, identity token, authentication]
 ---
 
-# [Initiator Name] - OIDC Token Generation
+# [Initiator Name] - Secretless Authentication
 
 [1-2 sentence overview of what this initiator is and what tokens it generates]
 

@@ -1,13 +1,13 @@
 ---
 sidebar_position: 3
-title: Buildkite OIDC Authentication
-description: Learn how Buildkite initiates secretless authentication using OpenID Connect (OIDC) tokens to eliminate the need for storing long-lived credentials
-keywords: [buildkite, oidc, openid connect, authentication, secretless, ci cd, buildkite agent, jwt]
+title: Buildkite - Secretless Authentication
+description: Learn how Buildkite enables secretless authentication to eliminate the need for storing long-lived credentials using OIDC tokens
+keywords: [buildkite, secretless, authentication, oidc, openid connect, ci cd, buildkite agent, jwt]
 ---
 
-# Buildkite OIDC Authentication
+# Buildkite - Secretless Authentication
 
-Buildkite provides native OIDC support, allowing pipelines to authenticate with cloud providers without storing long-lived credentials.
+Buildkite enables secretless authentication with cloud providers using native OIDC support, allowing pipelines to authenticate without storing long-lived credentials.
 
 ## Overview
 

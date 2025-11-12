@@ -1,13 +1,13 @@
 ---
 sidebar_position: 2
-title: GitLab CI/CD OIDC Authentication
-description: Learn how GitLab CI/CD initiates secretless authentication using OpenID Connect (OIDC) ID tokens to eliminate the need for storing long-lived credentials
-keywords: [gitlab ci, gitlab, oidc, openid connect, authentication, secretless, ci cd, id tokens, jwt]
+title: GitLab CI/CD - Secretless Authentication
+description: Learn how GitLab CI/CD enables secretless authentication to eliminate the need for storing long-lived credentials using OIDC ID tokens
+keywords: [gitlab ci, gitlab, secretless, authentication, oidc, openid connect, ci cd, id tokens, jwt]
 ---
 
-# GitLab CI/CD OIDC Authentication
+# GitLab CI/CD - Secretless Authentication
 
-GitLab CI/CD can authenticate with cloud providers using OpenID Connect (OIDC), eliminating the need to store long-lived credentials as CI/CD variables.
+GitLab CI/CD enables secretless authentication with cloud providers using OpenID Connect (OIDC), eliminating the need to store long-lived credentials as CI/CD variables.
 
 ## Overview
 
