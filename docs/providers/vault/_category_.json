@@ -1,0 +1,8 @@
+{
+  "label": "HashiCorp Vault",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "Configure HashiCorp Vault to accept secretless OIDC authentication"
+  }
+}

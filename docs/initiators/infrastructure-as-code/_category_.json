@@ -1,0 +1,8 @@
+{
+  "label": "Infrastructure as Code",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Infrastructure as Code platforms that can initiate secretless authentication"
+  }
+}
