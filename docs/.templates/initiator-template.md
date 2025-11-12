@@ -9,6 +9,13 @@ keywords: [initiator-name, oidc, jwt, identity token, claims]
 
 [1-2 sentence overview of what this initiator is and what tokens it generates]
 
+:::warning Documentation Principle
+**IMPORTANT**: This initiator documentation should focus ONLY on how [Initiator Name] generates and provides OIDC tokens. Provider-specific setup (AWS IAM roles, GCP service accounts, Azure managed identities, etc.) belongs in **integration guides** (`/docs/guides/[initiator]-to-[provider].md`), NOT in this document.
+
+**This doc should explain**: Token generation, claims, configuration, token access
+**Integration guides should explain**: Provider OIDC setup, trust policies, permissions, end-to-end configuration
+:::
+
 ## Overview
 
 [2-3 paragraphs explaining]:

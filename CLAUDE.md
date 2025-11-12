@@ -77,11 +77,92 @@ docs/
 │   ├── ci-tools/
 │   │   ├── github-actions.md
 │   │   └── gitlab-ci.md
-│   └── runtime-environments/
+│   ├── compute-runtime/
+│   │   └── kubernetes.md
+│   └── infrastructure-as-code/
+│       └── terraform-cloud.md
 └── guides/                       # Service-to-service integration guides
-    ├── github-to-aws.md
-    └── gitlab-to-gcp.md
+    ├── github-actions-to-aws.md
+    ├── kubernetes-to-aws.md
+    ├── kubernetes-to-gcp.md
+    └── kubernetes-to-azure.md
 ```
+
+### Separation of Concerns: Initiators vs Integration Guides
+
+**CRITICAL PRINCIPLE:** Initiator documentation must NEVER contain provider-specific setup instructions. Provider-specific information belongs exclusively in integration guides.
+
+**Initiator Documentation Should Contain:**
+- How the initiator generates OIDC tokens
+- What claims are included in the tokens
+- How to configure token generation (audiences, lifetimes, etc.)
+- How to access/read generated tokens
+- Generic best practices for token security
+- Links to relevant integration guides
+
+**Initiator Documentation Should NEVER Contain:**
+- Provider-specific OIDC setup (e.g., AWS IAM role creation, GCP service account binding)
+- Provider-specific trust policies
+- Provider-specific authentication flows beyond token generation
+- Cloud provider CLI commands or Terraform configurations
+- Step-by-step provider setup instructions
+
+**Integration Guides Should Contain:**
+- Complete end-to-end setup for specific initiator → provider combinations
+- Provider-specific OIDC configuration
+- Trust policy examples with claim validation
+- Permissions/IAM policy configuration
+- Testing and verification steps
+- Troubleshooting specific to that integration
+- Complete working examples (Terraform, CLI scripts, etc.)
+
+**Example - Kubernetes Documentation Structure:**
+
+✅ **CORRECT: `/docs/initiators/compute-runtime/kubernetes.md`**
+```markdown
+# Kubernetes Workload Identity
+
+- How Service Account Token Projection works
+- Token claims (iss, sub, aud, kubernetes.io/*)
+- Configuration parameters (expirationSeconds, audience, path)
+- How to mount and access tokens
+- Generic security best practices
+- Links to: kubernetes-to-aws.md, kubernetes-to-gcp.md, kubernetes-to-azure.md
+```
+
+✅ **CORRECT: `/docs/guides/kubernetes-to-aws.md`**
+```markdown
+# Kubernetes to AWS Integration Guide
+
+- Prerequisites (EKS or self-managed cluster)
+- AWS IAM OIDC provider setup
+- IAM role creation with trust policy
+- ServiceAccount annotation (eks.amazonaws.com/role-arn)
+- Complete testing and verification
+- AWS-specific troubleshooting
+- Full Terraform/CLI examples
+```
+
+❌ **INCORRECT: Mixing in initiator doc**
+```markdown
+# Kubernetes Workload Identity
+
+## AWS IRSA Setup  ← NO! This belongs in kubernetes-to-aws.md
+1. Create IAM OIDC provider...
+2. Create IAM role...
+3. Annotate ServiceAccount...
+
+## GKE Workload Identity Setup  ← NO! This belongs in kubernetes-to-gcp.md
+1. Enable Workload Identity on cluster...
+2. Create GCP Service Account...
+```
+
+**Benefits of This Separation:**
+- **Clarity**: Users can quickly find either "how to generate tokens" OR "how to connect to a specific provider"
+- **Maintainability**: Provider-specific changes don't require updating initiator docs
+- **Reusability**: Integration guide template can be reused for any initiator → provider combination
+- **Discoverability**: Clear paths for both "I want to use X to authenticate" and "I want to authenticate to Y"
+- **Reduces Duplication**: Provider setup is documented once per provider, not once per initiator
 
 **Category Configuration:** Create `_category_.json` in each folder:
 ```json
