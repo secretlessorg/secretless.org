@@ -54,6 +54,26 @@ const config: Config = {
     ],
   ],
 
+  themes: [
+    '@docusaurus/theme-mermaid',
+    [
+      '@easyops-cn/docusaurus-search-local',
+      {
+        hashed: true,
+        language: ['en'],
+        highlightSearchTermsOnTargetPage: true,
+        explicitSearchResultPath: true,
+        indexDocs: true,
+        indexBlog: false,
+        docsRouteBasePath: '/docs',
+      },
+    ],
+  ],
+
+  markdown: {
+    mermaid: true,
+  },
+
   themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',

@@ -22,6 +22,26 @@ Terraform Cloud uses OpenID Connect (OIDC) workload identity tokens to establish
 
 This secretless authentication model eliminates manual credential rotation and management overhead.
 
+### Authentication Flow
+
+```mermaid
+sequenceDiagram
+    participant TFC as Terraform Cloud
+    participant OIDC as Cloud Provider<br/>OIDC Endpoint
+    participant IAM as Cloud Provider<br/>IAM/Identity
+    participant API as Cloud Provider<br/>API/Resources
+
+    TFC->>OIDC: 1. Request authentication with OIDC token
+    Note over TFC,OIDC: Token contains: org, project,<br/>workspace, run phase
+    OIDC->>OIDC: 2. Validate token signature
+    OIDC->>IAM: 3. Check trust policy & permissions
+    IAM->>OIDC: 4. Approve & generate temp credentials
+    OIDC->>TFC: 5. Return temporary credentials<br/>(valid 15-60 minutes)
+    TFC->>API: 6. Execute Terraform operations
+    Note over TFC,API: Using temporary credentials
+    TFC->>TFC: 7. Run completes, credentials expire
+```
+
 ## Supported Providers
 
 Terraform Cloud can authenticate to the following providers using dynamic credentials:
