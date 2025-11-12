@@ -1,0 +1,8 @@
+{
+  "label": "Secret Management",
+  "position": 7,
+  "link": {
+    "type": "generated-index",
+    "description": "Configure secret management platforms to accept secretless authentication"
+  }
+}

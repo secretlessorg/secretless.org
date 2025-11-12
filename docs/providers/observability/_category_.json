@@ -1,0 +1,8 @@
+{
+  "label": "Monitoring & Observability",
+  "position": 8,
+  "link": {
+    "type": "generated-index",
+    "description": "Configure monitoring and observability platforms to accept secretless authentication"
+  }
+}

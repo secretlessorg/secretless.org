@@ -1,0 +1,8 @@
+{
+  "label": "Object Storage",
+  "position": 12,
+  "link": {
+    "type": "generated-index",
+    "description": "Configure object storage services to accept secretless authentication"
+  }
+}

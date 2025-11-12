@@ -1,0 +1,8 @@
+{
+  "label": "Geolocation & Mapping",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "Configure geolocation and mapping services to accept secretless authentication"
+  }
+}

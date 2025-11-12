@@ -1,0 +1,8 @@
+{
+  "label": "Communication & Notification APIs",
+  "position": 9,
+  "link": {
+    "type": "generated-index",
+    "description": "Configure communication and notification API services to accept secretless authentication"
+  }
+}

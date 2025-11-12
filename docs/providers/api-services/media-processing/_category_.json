@@ -1,0 +1,8 @@
+{
+  "label": "Media & Content Processing",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Configure media and content processing services to accept secretless authentication"
+  }
+}
