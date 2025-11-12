@@ -290,9 +290,9 @@ echo "AZURE_SUBSCRIPTION_ID: $SUB_ID"
 
 ## Next Steps
 
-- **For GitHub Actions**: See [GitHub Actions Initiator Documentation](../../initiators/ci-tools/github-actions.md)
-- **For GitLab CI**: See [GitLab CI Initiator Documentation](../../initiators/ci-tools/gitlab-ci.md)
-- **Integration Examples**: Check [GitLab to Azure Guide](../../guides/gitlab-to-azure.md)
+- **For GitHub Actions**: See [GitHub Actions Initiator Documentation](../../../initiators/ci-tools/github-actions.md)
+- **For GitLab CI**: See [GitLab CI Initiator Documentation](../../../initiators/ci-tools/gitlab-ci.md)
+- **Integration Examples**: Check [GitLab to Azure Guide](../../../guides/gitlab-to-azure.md)
 
 ## Additional Resources
 

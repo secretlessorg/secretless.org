@@ -46,11 +46,11 @@ sequenceDiagram
 
 Terraform Cloud can authenticate to the following providers using dynamic credentials:
 
-- **[AWS](../../providers/aws/oidc-setup.md)** - Using IAM roles and OIDC federation
-- **[Google Cloud Platform](../../providers/gcp/workload-identity-federation.md)** - Using Workload Identity Federation
-- **[Azure](../../providers/azure/federated-credentials.md)** - Using Federated Credentials
+- **[AWS](../../providers/cloud-platforms/aws/oidc-setup.md)** - Using IAM roles and OIDC federation
+- **[Google Cloud Platform](../../providers/cloud-platforms/gcp/workload-identity-federation.md)** - Using Workload Identity Federation
+- **[Azure](../../providers/cloud-platforms/azure/federated-credentials.md)** - Using Federated Credentials
 - **[HashiCorp Vault](../../providers/vault/overview.md)** - Using JWT authentication backend
-- **[Kubernetes](../../providers/kubernetes/overview.md)** - Using OIDC authentication (EKS and GKE only)
+- **[Kubernetes](../../providers/container-orchestration/kubernetes/overview.md)** - Using OIDC authentication (EKS and GKE only)
 - **HCP** - HashiCorp Cloud Platform
 
 Additionally, you can use **Vault-backed dynamic credentials** to leverage Vault's secrets engines for generating temporary credentials for AWS, GCP, or Azure without exposing OIDC metadata endpoints to the public internet.

@@ -567,11 +567,11 @@ aws iam get-open-id-connect-provider \
 Use AWS with secretless authentication from:
 
 ### CI/CD Tools
-- [GitHub Actions → AWS](../../guides/github-actions-to-aws.md)
-- [Buildkite → AWS](../../guides/buildkite-to-aws.md)
+- [GitHub Actions → AWS](../../../guides/github-actions-to-aws.md)
+- [Buildkite → AWS](../../../guides/buildkite-to-aws.md)
 
 ### Infrastructure as Code
-- [Terraform Cloud → AWS](../../guides/terraform-cloud-to-aws.md)
+- [Terraform Cloud → AWS](../../../guides/terraform-cloud-to-aws.md)
 
 ## Additional Resources
 

@@ -979,7 +979,7 @@ echo "  kubectl exec my-app-test-pod -- aws s3 ls s3://my-bucket/"
 ### Learn More
 
 - **Kubernetes Initiator Documentation**: [Learn about Kubernetes workload identity](../initiators/compute-runtime/kubernetes.md)
-- **AWS Provider Documentation**: [Learn about AWS OIDC setup](../providers/aws/oidc-setup.md)
+- **AWS Provider Documentation**: [Learn about AWS OIDC setup](../providers/cloud-platforms/aws/oidc-setup.md)
 
 ## Additional Resources
 

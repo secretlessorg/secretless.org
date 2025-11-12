@@ -84,9 +84,9 @@ This site provides comprehensive guides for implementing secretless authenticati
 
 Learn how to configure **service providers** to accept secretless authentication:
 
-- **[AWS](providers/aws/oidc-setup.md)** - IAM roles with OIDC identity providers
-- **[Google Cloud Platform](providers/gcp/workload-identity-federation.md)** - Workload Identity Federation
-- **[Microsoft Azure](providers/azure/federated-credentials.md)** - Federated identity credentials
+- **[AWS](providers/cloud-platforms/aws/oidc-setup.md)** - IAM roles with OIDC identity providers
+- **[Google Cloud Platform](providers/cloud-platforms/gcp/workload-identity-federation.md)** - Workload Identity Federation
+- **[Microsoft Azure](providers/cloud-platforms/azure/federated-credentials.md)** - Federated identity credentials
 - **Kubernetes** - Service Account Token Projection (coming soon)
 - **Cloudflare** - API tokens with OIDC (coming soon)
 
@@ -128,7 +128,7 @@ Each guide provides complete setup instructions to deploy without storing creden
 
 Want to understand the fundamentals first?
 
-1. Read about [AWS OIDC Provider Setup](providers/aws/oidc-setup.md)
+1. Read about [AWS OIDC Provider Setup](providers/cloud-platforms/aws/oidc-setup.md)
 2. Learn about [GitHub Actions OIDC](initiators/ci-tools/github-actions.md)
 3. Then implement with the [integration guide](guides/github-actions-to-aws.md)
 
@@ -137,7 +137,7 @@ Want to understand the fundamentals first?
 Looking for something specific?
 
 - **CI/CD Deployments**: See [CI/CD Tools](initiators/ci-tools/github-actions.md)
-- **Cloud Provider Access**: Browse [Providers](providers/aws/oidc-setup.md)
+- **Cloud Provider Access**: Browse [Providers](providers/cloud-platforms/aws/oidc-setup.md)
 - **Complete Walkthroughs**: Check [Integration Guides](guides/github-actions-to-aws.md)
 
 ## Core Concepts
@@ -224,7 +224,7 @@ Ready to eliminate secrets from your infrastructure?
    - [GitLab CI → GCP](guides/gitlab-to-gcp.md)
    - [GitLab CI → Azure](guides/gitlab-to-azure.md)
    - [Buildkite → AWS](guides/buildkite-to-aws.md)
-2. **Learn the details**: Browse [Providers](providers/aws/oidc-setup.md) and [Initiators](initiators/ci-tools/github-actions.md)
+2. **Learn the details**: Browse [Providers](providers/cloud-platforms/aws/oidc-setup.md) and [Initiators](initiators/ci-tools/github-actions.md)
 3. **Expand your setup**: Mix and match providers and initiators for your stack
 4. **Share your experience**: Contribute back to the community
 

@@ -531,6 +531,6 @@ Use different service accounts for dev/staging/production.
 ## Additional Resources
 
 - [Terraform Cloud Dynamic Credentials Overview](../initiators/infrastructure-as-code/terraform-cloud.md)
-- [GCP Workload Identity Federation Setup](../providers/gcp/workload-identity-federation.md)
+- [GCP Workload Identity Federation Setup](../providers/cloud-platforms/gcp/workload-identity-federation.md)
 - [HashiCorp Documentation: GCP Dynamic Credentials](https://developer.hashicorp.com/terraform/cloud-docs/workspaces/dynamic-provider-credentials/gcp-configuration)
 - [GCP Workload Identity Federation](https://cloud.google.com/iam/docs/workload-identity-federation)

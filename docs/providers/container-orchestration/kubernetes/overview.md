@@ -172,7 +172,7 @@ subjects:
 
 Each Kubernetes platform has different setup requirements:
 
-- [Terraform Cloud → Kubernetes (EKS/GKE)](../../guides/terraform-cloud-to-kubernetes.md)
+- [Terraform Cloud → Kubernetes (EKS/GKE)](../../../guides/terraform-cloud-to-kubernetes.md)
 - GitHub Actions → Kubernetes (Coming Soon)
 - GitLab CI → Kubernetes (Coming Soon)
 

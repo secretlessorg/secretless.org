@@ -742,7 +742,7 @@ output "instructions" {
 ## Next Steps
 
 - **Learn more about Buildkite**: [Buildkite Initiator Documentation](../initiators/ci-tools/buildkite.md)
-- **AWS deep dive**: [AWS OIDC Provider Setup](../providers/aws/oidc-setup.md)
+- **AWS deep dive**: [AWS OIDC Provider Setup](../providers/cloud-platforms/aws/oidc-setup.md)
 - **Other integrations**: Explore GCP and Azure integrations
 
 ## Additional Resources

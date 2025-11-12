@@ -613,6 +613,6 @@ echo "ARM_SUBSCRIPTION_ID = $(az account show --query id -otsv)"
 ## Additional Resources
 
 - [Terraform Cloud Dynamic Credentials Overview](../initiators/infrastructure-as-code/terraform-cloud.md)
-- [Azure Federated Credentials Setup](../providers/azure/federated-credentials.md)
+- [Azure Federated Credentials Setup](../providers/cloud-platforms/azure/federated-credentials.md)
 - [HashiCorp Documentation: Azure Dynamic Credentials](https://developer.hashicorp.com/terraform/cloud-docs/workspaces/dynamic-provider-credentials/azure-configuration)
 - [Azure Workload Identity Federation](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation)

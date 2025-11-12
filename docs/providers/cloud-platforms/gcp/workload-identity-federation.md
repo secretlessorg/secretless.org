@@ -408,9 +408,9 @@ google.subject=assertion.repository_id + ":" + assertion.ref
 
 ## Next Steps
 
-- **For GitHub Actions**: See [GitHub Actions Initiator Documentation](../../initiators/ci-tools/github-actions.md)
-- **For GitLab CI**: See [GitLab CI Initiator Documentation](../../initiators/ci-tools/gitlab-ci.md)
-- **Integration Guides**: Check [Integration Guides](../../guides/gitlab-to-gcp.md)
+- **For GitHub Actions**: See [GitHub Actions Initiator Documentation](../../../initiators/ci-tools/github-actions.md)
+- **For GitLab CI**: See [GitLab CI Initiator Documentation](../../../initiators/ci-tools/gitlab-ci.md)
+- **Integration Guides**: Check [Integration Guides](../../../guides/gitlab-to-gcp.md)
 
 ## Additional Resources
 
