@@ -701,7 +701,6 @@ output "serviceaccount_name" {
 
 - [Kubernetes → AWS](./kubernetes-to-aws.md)
 - [Kubernetes → GCP](./kubernetes-to-gcp.md)
-- [Kubernetes → Vault](./kubernetes-to-vault.md)
 
 ### Learn More
 

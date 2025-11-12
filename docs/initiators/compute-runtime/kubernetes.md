@@ -563,9 +563,6 @@ Use Kubernetes workload identity to authenticate with:
 - [Kubernetes → GCP](../../guides/kubernetes-to-gcp.md)
 - [Kubernetes → Azure](../../guides/kubernetes-to-azure.md)
 
-### Secret Management
-- [Kubernetes → HashiCorp Vault](../../guides/kubernetes-to-vault.md) (Coming Soon)
-
 ## Additional Resources
 
 ### Kubernetes Documentation

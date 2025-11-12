@@ -975,7 +975,6 @@ echo "  kubectl exec my-app-test-pod -- aws s3 ls s3://my-bucket/"
 
 - [Kubernetes → GCP](./kubernetes-to-gcp.md)
 - [Kubernetes → Azure](./kubernetes-to-azure.md)
-- [Kubernetes → Vault](./kubernetes-to-vault.md)
 
 ### Learn More
 

@@ -691,7 +691,6 @@ echo "  kubectl exec my-app-test-pod -- gcloud storage buckets list"
 
 - [Kubernetes → AWS](./kubernetes-to-aws.md)
 - [Kubernetes → Azure](./kubernetes-to-azure.md)
-- [Kubernetes → Vault](./kubernetes-to-vault.md)
 
 ### Learn More
 
