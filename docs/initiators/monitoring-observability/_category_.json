@@ -1,0 +1,8 @@
+{
+  "label": "Monitoring & Observability",
+  "position": 9,
+  "link": {
+    "type": "generated-index",
+    "description": "Monitoring and observability platforms that support OIDC-based authentication for agents and service accounts."
+  }
+}

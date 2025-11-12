@@ -1,0 +1,8 @@
+{
+  "label": "Container Platforms",
+  "position": 7,
+  "link": {
+    "type": "generated-index",
+    "description": "Container registries and orchestration platforms that support workload identity and OIDC-based authentication without long-lived credentials."
+  }
+}

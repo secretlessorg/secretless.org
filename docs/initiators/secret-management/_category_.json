@@ -1,0 +1,8 @@
+{
+  "label": "Secret Management",
+  "position": 8,
+  "link": {
+    "type": "generated-index",
+    "description": "Secret management services that support OIDC authentication methods, enabling secure access to secrets without long-lived tokens."
+  }
+}

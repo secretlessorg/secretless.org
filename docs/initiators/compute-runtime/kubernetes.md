@@ -2,7 +2,6 @@
 sidebar_position: 1
 title: Kubernetes Workload Identity
 description: Configure Kubernetes workloads to generate OIDC tokens for secretless authentication with external services
-slug: /initiators/kubernetes
 keywords: [kubernetes, k8s, workload identity, oidc, service account, projected tokens, secretless]
 ---
 

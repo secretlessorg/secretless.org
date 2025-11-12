@@ -1,0 +1,8 @@
+{
+  "label": "Automation & Orchestration",
+  "position": 10,
+  "link": {
+    "type": "generated-index",
+    "description": "Infrastructure automation and orchestration tools that support OIDC for secretless deployments and configuration management."
+  }
+}
