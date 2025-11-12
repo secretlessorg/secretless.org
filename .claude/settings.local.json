@@ -14,7 +14,8 @@
       "Bash(mkdir:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git reset:*)"
+      "Bash(git reset:*)",
+      "Bash(bun run build:*)"
     ],
     "deny": [],
     "ask": []

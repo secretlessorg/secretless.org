@@ -33,7 +33,7 @@ function HomepageHeader() {
             </Link>
             <Link
               className={clsx("button button--outline button--lg", styles.buttonOutline)}
-              to="/docs/guides">
+              to="/docs/category/integration-guides">
               View Guides
             </Link>
           </div>

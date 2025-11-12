@@ -92,11 +92,11 @@ const config: Config = {
             },
             {
               label: 'Providers',
-              to: '/docs/providers',
+              to: '/docs/category/providers',
             },
             {
               label: 'Initiators',
-              to: '/docs/initiators',
+              to: '/docs/category/initiators',
             },
           ],
         },
@@ -104,8 +104,8 @@ const config: Config = {
           title: 'Guides',
           items: [
             {
-              label: 'GitHub to AWS',
-              to: '/docs/guides/github-to-aws',
+              label: 'GitHub Actions to AWS',
+              to: '/docs/guides/github-actions-to-aws',
             },
             {
               label: 'GitLab to GCP',
@@ -113,7 +113,7 @@ const config: Config = {
             },
             {
               label: 'All Guides',
-              to: '/docs/guides',
+              to: '/docs/category/integration-guides',
             },
           ],
         },
