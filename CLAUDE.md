@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-secretless.org is a documentation website built to promote secretless authentication workflows and discourage the use of long-lived authentication tokens. The site documents how to integrate services using secretless techniques like OIDC connections and just-in-time authentication across major cloud providers (AWS, GCP, Azure, Kubernetes, Cloudflare) and CI/CD tools.
+secretsless.org is a documentation website built to promote secretless authentication workflows and discourage the use of long-lived authentication tokens. The site documents how to integrate services using secretless techniques like OIDC connections and just-in-time authentication across major cloud providers (AWS, GCP, Azure, Kubernetes, Cloudflare) and CI/CD tools.
 
 **Tech Stack:**
 - Docusaurus 3.9.2 (static site generator)
