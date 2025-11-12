@@ -1,0 +1,8 @@
+{
+  "label": "Compute Runtime",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "Container orchestration platforms and compute runtimes that can authenticate to external services using secretless methods. Configure Kubernetes workloads and other runtime environments to obtain temporary credentials."
+  }
+}
