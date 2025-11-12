@@ -1,0 +1,8 @@
+{
+  "label": "Microsoft Azure",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Configure Microsoft Azure to accept secretless authentication using federated identity credentials, service principals, and OIDC tokens."
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "label": "Google Cloud Platform (GCP)",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Configure Google Cloud Platform to accept secretless authentication using Workload Identity Federation, service account impersonation, and OIDC tokens."
+  }
+}

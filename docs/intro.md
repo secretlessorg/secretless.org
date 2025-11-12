@@ -84,9 +84,9 @@ This site provides comprehensive guides for implementing secretless authenticati
 
 Learn how to configure **service providers** to accept secretless authentication:
 
-- **[AWS](providers/aws/oidc-setup.md)** - IAM roles with OIDC
-- **GCP** - Workload Identity Federation (coming soon)
-- **Azure** - Managed Identities (coming soon)
+- **[AWS](providers/aws/oidc-setup.md)** - IAM roles with OIDC identity providers
+- **[Google Cloud Platform](providers/gcp/workload-identity-federation.md)** - Workload Identity Federation
+- **[Microsoft Azure](providers/azure/federated-credentials.md)** - Federated identity credentials
 - **Kubernetes** - Service Account Token Projection (coming soon)
 - **Cloudflare** - API tokens with OIDC (coming soon)
 
@@ -94,8 +94,9 @@ Learn how to configure **service providers** to accept secretless authentication
 
 Learn how to configure **services that initiate authentication**:
 
-- **[GitHub Actions](initiators/ci-tools/github-actions.md)** - OIDC in workflows
-- **GitLab CI** - ID tokens (coming soon)
+- **[GitHub Actions](initiators/ci-tools/github-actions.md)** - OIDC tokens in workflows
+- **[GitLab CI/CD](initiators/ci-tools/gitlab-ci.md)** - ID tokens with configurable audiences
+- **[Buildkite](initiators/ci-tools/buildkite.md)** - Native OIDC token generation
 - **CircleCI** - OIDC tokens (coming soon)
 - **AWS ECS/EKS** - Task/Pod identities (coming soon)
 - **Kubernetes** - Workload identities (coming soon)
@@ -104,20 +105,24 @@ Learn how to configure **services that initiate authentication**:
 
 Follow step-by-step guides for specific service combinations:
 
-- **[GitHub Actions → AWS](guides/github-actions-to-aws.md)** - Complete setup guide
-- **GitLab CI → GCP** (coming soon)
-- **CircleCI → Azure** (coming soon)
+- **[GitHub Actions → AWS](guides/github-actions-to-aws.md)** - OIDC with IAM roles
+- **[GitLab CI → GCP](guides/gitlab-to-gcp.md)** - Workload Identity Federation
+- **[GitLab CI → Azure](guides/gitlab-to-azure.md)** - Federated identity credentials
+- **[Buildkite → AWS](guides/buildkite-to-aws.md)** - Native OIDC token integration
 - **And many more** (coming soon)
 
 ## Getting Started
 
 ### Quick Start
 
-If you want to get started immediately with a common use case:
+Choose a guide based on your tech stack:
 
-1. **[GitHub Actions to AWS](guides/github-actions-to-aws.md)** - Most popular combination
-2. Follow the step-by-step guide (15-30 minutes)
-3. Deploy without storing AWS credentials
+1. **[GitHub Actions → AWS](guides/github-actions-to-aws.md)** - Most popular combination (20-30 min)
+2. **[GitLab CI → GCP](guides/gitlab-to-gcp.md)** - Workload Identity Federation (20-30 min)
+3. **[GitLab CI → Azure](guides/gitlab-to-azure.md)** - Federated credentials (20-30 min)
+4. **[Buildkite → AWS](guides/buildkite-to-aws.md)** - Native OIDC support (20-30 min)
+
+Each guide provides complete setup instructions to deploy without storing credentials.
 
 ### Learn the Concepts
 
@@ -193,7 +198,8 @@ Secretless authentication satisfies these requirements by design.
 Major platforms now support OIDC:
 
 - GitHub Actions (since 2021)
-- GitLab CI (since 2022)
+- GitLab CI/CD (since 2022)
+- Buildkite (since 2023)
 - CircleCI (since 2022)
 - AWS, GCP, Azure (all support OIDC)
 - Kubernetes (native support via service accounts)
@@ -213,9 +219,13 @@ This is a community-driven resource. We welcome:
 
 Ready to eliminate secrets from your infrastructure?
 
-1. **Start with a guide**: [GitHub Actions to AWS](guides/github-actions-to-aws.md)
+1. **Choose your integration**:
+   - [GitHub Actions → AWS](guides/github-actions-to-aws.md)
+   - [GitLab CI → GCP](guides/gitlab-to-gcp.md)
+   - [GitLab CI → Azure](guides/gitlab-to-azure.md)
+   - [Buildkite → AWS](guides/buildkite-to-aws.md)
 2. **Learn the details**: Browse [Providers](providers/aws/oidc-setup.md) and [Initiators](initiators/ci-tools/github-actions.md)
-3. **Expand your setup**: Apply patterns to other services
+3. **Expand your setup**: Mix and match providers and initiators for your stack
 4. **Share your experience**: Contribute back to the community
 
 Let's build a more secure future - one without long-lived credentials.
