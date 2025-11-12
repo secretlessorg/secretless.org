@@ -5,7 +5,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'SecretsLess.org',
+  title: 'Secretless.cloud',
   tagline: 'Secure authentication without secrets',
   favicon: 'img/favicon.svg',
 
@@ -15,15 +15,15 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://secretsless.org',
+  url: 'https://secretless.cloud',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'secretsless', // Usually your GitHub org/user name.
-  projectName: 'secretsless.org', // Usually your repo name.
+  organizationName: 'secretlessorg', // Usually your GitHub org/user name.
+  projectName: 'secretless.cloud', // Usually your repo name.
 
   onBrokenLinks: 'throw',
 
@@ -81,9 +81,9 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'SecretsLess.org',
+      title: 'Secretless.cloud',
       logo: {
-        alt: 'SecretsLess.org Logo',
+        alt: 'Secretless.cloud Logo',
         src: 'img/logo.svg',
       },
       items: [
@@ -94,7 +94,7 @@ const config: Config = {
           label: 'Documentation',
         },
         {
-          href: 'https://github.com/secretsless/secretsless.org',
+          href: 'https://github.com/secretlessorg/secretless.cloud',
           label: 'GitHub',
           position: 'right',
         },
@@ -142,16 +142,16 @@ const config: Config = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/secretsless/secretsless.org',
+              href: 'https://github.com/secretlessorg/secretless.cloud',
             },
             {
               label: 'Contribute',
-              href: 'https://github.com/secretsless/secretsless.org/blob/main/CONTRIBUTING.md',
+              href: 'https://github.com/secretlessorg/secretless.cloud/blob/main/CONTRIBUTING.md',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} SecretsLess.org. Promoting secure authentication without long-lived secrets.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Secretless.cloud. Promoting secure authentication without long-lived secrets.`,
     },
     prism: {
       theme: prismThemes.github,

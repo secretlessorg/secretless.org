@@ -1,6 +1,6 @@
 # Documentation Templates Guide
 
-This directory contains templates for creating consistent, high-quality documentation pages for secretsless.org.
+This directory contains templates for creating consistent, high-quality documentation pages for Secretless.cloud.
 
 ## Quick Start
 
