@@ -1,0 +1,8 @@
+{
+  "label": "Financial Data & FinTech",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Configure financial data and FinTech services to accept secretless authentication"
+  }
+}

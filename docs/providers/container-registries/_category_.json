@@ -1,0 +1,8 @@
+{
+  "label": "Container & Package Registries",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Configure container and package registries to accept secretless authentication"
+  }
+}

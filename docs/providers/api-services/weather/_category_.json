@@ -1,0 +1,8 @@
+{
+  "label": "Weather & Environmental Data",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "Configure weather and environmental data services to accept secretless authentication"
+  }
+}
