@@ -1,0 +1,69 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Main shield -->
+  <path d="M100 30 L50 55 V100 C50 135 65 160 100 185 C135 160 150 135 150 100 V55 L100 30Z"
+        fill="url(#security-grad1)" stroke="url(#security-grad-stroke)" stroke-width="4"/>
+  
+  <!-- Inner shield details -->
+  <path d="M100 45 L65 65 V100 C65 125 75 142 100 165 C125 142 135 125 135 100 V65 L100 45Z"
+        fill="url(#security-grad2)" opacity="0.3"/>
+  
+  <!-- Checkmark -->
+  <path d="M80 100 L95 115 L120 85" 
+        stroke="#10B981" 
+        stroke-width="6" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+        fill="none">
+    <animate attributeName="stroke-dasharray" from="0 100" to="100 0" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="stroke-dashoffset" from="100" to="0" dur="2s" repeatCount="indefinite"/>
+  </path>
+  
+  <!-- Lock symbols in corners -->
+  <g transform="translate(40, 40)" opacity="0.4">
+    <rect x="0" y="5" width="10" height="8" rx="2" fill="#6366F1"/>
+    <path d="M2 5 V3 C2 1.3 3.3 0 5 0 C6.7 0 8 1.3 8 3 V5" stroke="#6366F1" stroke-width="1.5" fill="none"/>
+  </g>
+  
+  <g transform="translate(150, 40)" opacity="0.4">
+    <rect x="0" y="5" width="10" height="8" rx="2" fill="#8B5CF6"/>
+    <path d="M2 5 V3 C2 1.3 3.3 0 5 0 C6.7 0 8 1.3 8 3 V5" stroke="#8B5CF6" stroke-width="1.5" fill="none"/>
+  </g>
+  
+  <g transform="translate(150, 170)" opacity="0.4">
+    <rect x="0" y="5" width="10" height="8" rx="2" fill="#0EA5E9"/>
+    <path d="M2 5 V3 C2 1.3 3.3 0 5 0 C6.7 0 8 1.3 8 3 V5" stroke="#0EA5E9" stroke-width="1.5" fill="none"/>
+  </g>
+  
+  <!-- Rotating circle for zero trust concept -->
+  <circle cx="100" cy="100" r="60" stroke="#10B981" stroke-width="2" stroke-dasharray="5 10" opacity="0.3" fill="none">
+    <animateTransform 
+      attributeName="transform" 
+      type="rotate" 
+      from="0 100 100" 
+      to="360 100 100" 
+      dur="20s" 
+      repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Text -->
+  <text x="100" y="150" text-anchor="middle" fill="white" font-size="12" font-weight="bold" opacity="0.9">
+    ZERO TRUST
+  </text>
+  
+  <defs>
+    <linearGradient id="security-grad1" x1="100" y1="30" x2="100" y2="185">
+      <stop offset="0%" stop-color="#6366F1"/>
+      <stop offset="50%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#0EA5E9"/>
+    </linearGradient>
+    <linearGradient id="security-grad2" x1="100" y1="45" x2="100" y2="165">
+      <stop offset="0%" stop-color="#818CF8"/>
+      <stop offset="100%" stop-color="#A78BFA"/>
+    </linearGradient>
+    <linearGradient id="security-grad-stroke" x1="50" y1="30" x2="150" y2="185">
+      <stop offset="0%" stop-color="#6366F1"/>
+      <stop offset="50%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#0EA5E9"/>
+    </linearGradient>
+  </defs>
+</svg>

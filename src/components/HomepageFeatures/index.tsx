@@ -11,32 +11,32 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: 'OIDC Authentication',
+    Svg: require('@site/static/img/feature-oidc.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Use OpenID Connect (OIDC) to establish trust between services without
+        storing long-lived credentials. Get temporary tokens that automatically expire.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: 'Multi-Cloud Support',
+    Svg: require('@site/static/img/feature-cloud.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Works across AWS, GCP, Azure, Kubernetes, and Cloudflare. Integrate CI/CD
+        platforms like GitHub Actions, GitLab CI, and Buildkite with your cloud providers.
       </>
     ),
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: 'Zero Trust Security',
+    Svg: require('@site/static/img/feature-security.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Eliminate credential leaks, reduce attack surface, and improve compliance.
+        Every authentication is verified, temporary, and scoped to specific permissions.
       </>
     ),
   },

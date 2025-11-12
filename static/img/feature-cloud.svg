@@ -1,0 +1,58 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Large cloud -->
+  <path d="M50 100 Q50 70 75 70 Q75 50 100 50 Q125 50 125 70 Q150 70 150 100 Q150 130 125 130 Q75 130 75 130 Q50 130 50 100Z"
+        fill="url(#cloud-grad1)" stroke="#6366F1" stroke-width="3"/>
+  
+  <!-- Smaller clouds -->
+  <path d="M30 140 Q30 125 42 125 Q42 115 52 115 Q62 115 62 125 Q74 125 74 140 Q74 155 62 155 Q42 155 42 155 Q30 155 30 140Z"
+        fill="url(#cloud-grad2)" stroke="#8B5CF6" stroke-width="2" opacity="0.7"/>
+  
+  <path d="M126 140 Q126 125 138 125 Q138 115 148 115 Q158 115 158 125 Q170 125 170 140 Q170 155 158 155 Q138 155 138 155 Q126 155 126 140Z"
+        fill="url(#cloud-grad2)" stroke="#8B5CF6" stroke-width="2" opacity="0.7"/>
+  
+  <!-- Provider logos represented as abstract shapes -->
+  <!-- AWS -->
+  <g transform="translate(70, 85)">
+    <rect width="20" height="20" rx="4" fill="#FF9900" opacity="0.9"/>
+    <text x="10" y="14" text-anchor="middle" fill="white" font-size="10" font-weight="bold">AWS</text>
+  </g>
+  
+  <!-- GCP -->
+  <g transform="translate(100, 90)">
+    <circle r="12" fill="#4285F4" opacity="0.9"/>
+    <text x="0" y="4" text-anchor="middle" fill="white" font-size="8" font-weight="bold">GCP</text>
+  </g>
+  
+  <!-- Azure -->
+  <g transform="translate(130, 85)">
+    <polygon points="0,20 10,0 20,20" fill="#0078D4" opacity="0.9"/>
+    <text x="10" y="17" text-anchor="middle" fill="white" font-size="7" font-weight="bold">Azure</text>
+  </g>
+  
+  <!-- Connection lines showing integration -->
+  <path d="M100 160 L100 140" stroke="#10B981" stroke-width="3" stroke-dasharray="5,5" opacity="0.6">
+    <animate attributeName="stroke-dashoffset" from="10" to="0" dur="1s" repeatCount="indefinite"/>
+  </path>
+  
+  <!-- Kubernetes icon at bottom -->
+  <g transform="translate(100, 175)">
+    <circle r="15" fill="url(#cloud-grad3)" stroke="#326CE5" stroke-width="2"/>
+    <path d="M0,-8 L-7,4 L7,4 Z" fill="white" opacity="0.9"/>
+  </g>
+  
+  <defs>
+    <linearGradient id="cloud-grad1" x1="50" y1="50" x2="150" y2="130">
+      <stop offset="0%" stop-color="#6366F1"/>
+      <stop offset="50%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#0EA5E9"/>
+    </linearGradient>
+    <linearGradient id="cloud-grad2" x1="30" y1="115" x2="170" y2="155">
+      <stop offset="0%" stop-color="#A78BFA"/>
+      <stop offset="100%" stop-color="#C4B5FD"/>
+    </linearGradient>
+    <linearGradient id="cloud-grad3" x1="85" y1="160" x2="115" y2="190">
+      <stop offset="0%" stop-color="#326CE5"/>
+      <stop offset="100%" stop-color="#5B8DEF"/>
+    </linearGradient>
+  </defs>
+</svg>

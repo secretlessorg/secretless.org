@@ -1,0 +1,22 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Simplified shield -->
+  <path d="M16 4L8 8V15C8 20 10 23 16 28C22 23 24 20 24 15V8L16 4Z"
+        fill="url(#grad1)" stroke="#6366F1" stroke-width="1.5"/>
+  
+  <!-- Lock body -->
+  <rect x="12" y="15" width="8" height="9" rx="1.5" fill="#8B5CF6"/>
+  
+  <!-- Lock shackle (open) -->
+  <path d="M13 15V12C13 10.3 14.3 9 16 9C17.7 9 19 10.3 19 12V11.5"
+        stroke="#0EA5E9" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+  
+  <!-- Success indicator -->
+  <circle cx="19" cy="11.5" r="1.5" fill="#10B981"/>
+  
+  <defs>
+    <linearGradient id="grad1" x1="16" y1="4" x2="16" y2="28">
+      <stop offset="0%" stop-color="#6366F1" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0.3"/>
+    </linearGradient>
+  </defs>
+</svg>

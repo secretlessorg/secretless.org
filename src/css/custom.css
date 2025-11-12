@@ -1,30 +1,207 @@
 /**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
+ * Custom CSS for Secretless.org
+ * Promoting secure authentication without long-lived secrets
  */
 
-/* You can override the default Infima variables here. */
+/* Light Mode Color Palette */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  /* Primary - Indigo (security, trust) */
+  --ifm-color-primary: #6366F1;
+  --ifm-color-primary-dark: #4F46E5;
+  --ifm-color-primary-darker: #4338CA;
+  --ifm-color-primary-darkest: #3730A3;
+  --ifm-color-primary-light: #818CF8;
+  --ifm-color-primary-lighter: #A5B4FC;
+  --ifm-color-primary-lightest: #C7D2FE;
+
+  /* Secondary - Sky Blue (innovation, clarity) */
+  --ifm-color-secondary: #0EA5E9;
+  --ifm-color-secondary-dark: #0284C7;
+  --ifm-color-secondary-darker: #0369A1;
+  --ifm-color-secondary-darkest: #075985;
+  --ifm-color-secondary-light: #38BDF8;
+  --ifm-color-secondary-lighter: #7DD3FC;
+  --ifm-color-secondary-lightest: #BAE6FD;
+
+  /* Accent - Purple (modern, premium) */
+  --ifm-color-accent: #8B5CF6;
+  --ifm-color-accent-dark: #7C3AED;
+  --ifm-color-accent-darker: #6D28D9;
+  --ifm-color-accent-light: #A78BFA;
+  --ifm-color-accent-lighter: #C4B5FD;
+
+  /* Success - Emerald (secure, safe) */
+  --ifm-color-success: #10B981;
+  --ifm-color-success-dark: #059669;
+  --ifm-color-success-darker: #047857;
+  --ifm-color-success-light: #34D399;
+  --ifm-color-success-lighter: #6EE7B7;
+
+  /* Typography */
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-heading-font-weight: 700;
+  --ifm-font-family-base: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  /* Code highlighting */
+  --docusaurus-highlighted-code-line-bg: rgba(99, 102, 241, 0.1);
+
+  /* Navbar */
+  --ifm-navbar-background-color: #ffffff;
+  --ifm-navbar-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+
+  /* Link colors */
+  --ifm-link-color: #6366F1;
+  --ifm-link-hover-color: #4F46E5;
+
+  /* Background gradient */
+  --gradient-primary: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #0EA5E9 100%);
+  --gradient-accent: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+/* Dark Mode Color Palette */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  /* Primary - Lighter Indigo for contrast */
+  --ifm-color-primary: #818CF8;
+  --ifm-color-primary-dark: #6366F1;
+  --ifm-color-primary-darker: #4F46E5;
+  --ifm-color-primary-darkest: #4338CA;
+  --ifm-color-primary-light: #A5B4FC;
+  --ifm-color-primary-lighter: #C7D2FE;
+  --ifm-color-primary-lightest: #E0E7FF;
+
+  /* Secondary - Lighter Sky Blue */
+  --ifm-color-secondary: #38BDF8;
+  --ifm-color-secondary-dark: #0EA5E9;
+  --ifm-color-secondary-darker: #0284C7;
+  --ifm-color-secondary-darkest: #0369A1;
+  --ifm-color-secondary-light: #7DD3FC;
+  --ifm-color-secondary-lighter: #BAE6FD;
+  --ifm-color-secondary-lightest: #E0F2FE;
+
+  /* Accent - Lighter Purple */
+  --ifm-color-accent: #A78BFA;
+  --ifm-color-accent-dark: #8B5CF6;
+  --ifm-color-accent-darker: #7C3AED;
+  --ifm-color-accent-light: #C4B5FD;
+  --ifm-color-accent-lighter: #DDD6FE;
+
+  /* Success - Lighter Emerald */
+  --ifm-color-success: #34D399;
+  --ifm-color-success-dark: #10B981;
+  --ifm-color-success-darker: #059669;
+  --ifm-color-success-light: #6EE7B7;
+  --ifm-color-success-lighter: #A7F3D0;
+
+  /* Code highlighting */
+  --docusaurus-highlighted-code-line-bg: rgba(129, 140, 248, 0.15);
+
+  /* Background colors */
+  --ifm-background-color: #0F172A;
+  --ifm-background-surface-color: #1E293B;
+
+  /* Link colors */
+  --ifm-link-color: #A5B4FC;
+  --ifm-link-hover-color: #C7D2FE;
+
+  /* Navbar */
+  --ifm-navbar-background-color: #1E293B;
+  --ifm-navbar-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.3), 0 1px 2px -1px rgb(0 0 0 / 0.3);
+}
+
+/* Custom styles */
+.gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-border {
+  border-image: var(--gradient-primary) 1;
+}
+
+/* Hero section enhancements */
+.hero {
+  background: var(--gradient-primary);
+  color: white;
+}
+
+.hero--primary {
+  --ifm-hero-text-color: #ffffff;
+}
+
+/* Button enhancements */
+.button--primary {
+  background: var(--gradient-accent);
+  border: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.button--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.5), 0 8px 10px -6px rgba(99, 102, 241, 0.5);
+}
+
+.button--secondary {
+  background-color: white;
+  color: var(--ifm-color-primary);
+  border: 2px solid white;
+  transition: all 0.2s ease;
+}
+
+.button--secondary:hover {
+  background-color: transparent;
+  color: white;
+  border-color: white;
+  transform: translateY(-2px);
+}
+
+/* Code blocks */
+.theme-code-block {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  border-radius: 8px;
+}
+
+/* Cards and containers */
+.card {
+  border: 1px solid rgba(99, 102, 241, 0.1);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+/* Navbar enhancements */
+.navbar {
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+[data-theme='dark'] .navbar {
+  background-color: rgba(30, 41, 59, 0.9) !important;
+}
+
+/* Footer */
+.footer {
+  background: linear-gradient(180deg, var(--ifm-background-color) 0%, #1E293B 100%);
+}
+
+[data-theme='dark'] .footer {
+  background: linear-gradient(180deg, #0F172A 0%, #020617 100%);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus states for accessibility */
+a:focus,
+button:focus {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
 }

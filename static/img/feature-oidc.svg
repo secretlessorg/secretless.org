@@ -1,0 +1,48 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Central node -->
+  <circle cx="100" cy="100" r="25" fill="url(#oidc-grad1)" stroke="#6366F1" stroke-width="3"/>
+  <text x="100" y="107" text-anchor="middle" fill="white" font-size="14" font-weight="bold">OIDC</text>
+  
+  <!-- Connected nodes -->
+  <circle cx="50" cy="50" r="18" fill="url(#oidc-grad2)" stroke="#8B5CF6" stroke-width="2"/>
+  <circle cx="150" cy="50" r="18" fill="url(#oidc-grad2)" stroke="#8B5CF6" stroke-width="2"/>
+  <circle cx="50" cy="150" r="18" fill="url(#oidc-grad2)" stroke="#8B5CF6" stroke-width="2"/>
+  <circle cx="150" cy="150" r="18" fill="url(#oidc-grad2)" stroke="#8B5CF6" stroke-width="2"/>
+  
+  <!-- Connection lines with arrows -->
+  <defs>
+    <marker id="arrow-oidc" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#0EA5E9"/>
+    </marker>
+  </defs>
+  
+  <line x1="68" y1="59" x2="82" y2="88" stroke="#0EA5E9" stroke-width="2" marker-end="url(#arrow-oidc)"/>
+  <line x1="132" y1="59" x2="118" y2="88" stroke="#0EA5E9" stroke-width="2" marker-end="url(#arrow-oidc)"/>
+  <line x1="68" y1="141" x2="82" y2="112" stroke="#0EA5E9" stroke-width="2" marker-end="url(#arrow-oidc)"/>
+  <line x1="132" y1="141" x2="118" y2="112" stroke="#0EA5E9" stroke-width="2" marker-end="url(#arrow-oidc)"/>
+  
+  <!-- Identity icons in corner nodes -->
+  <path d="M50 46 Q50 42 54 42 Q58 42 58 46 Q58 50 54 50 Q50 50 50 46Z" fill="white" opacity="0.8"/>
+  <path d="M150 46 Q150 42 154 42 Q158 42 158 46 Q158 50 154 50 Q150 50 150 46Z" fill="white" opacity="0.8"/>
+  <path d="M50 146 Q50 142 54 142 Q58 142 58 146 Q58 150 54 150 Q50 150 50 146Z" fill="white" opacity="0.8"/>
+  <path d="M150 146 Q150 142 154 142 Q158 142 158 146 Q158 150 154 150 Q150 150 150 146Z" fill="white" opacity="0.8"/>
+  
+  <!-- Token animation circles -->
+  <circle cx="85" cy="73" r="4" fill="#10B981" opacity="0.8">
+    <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="115" cy="127" r="4" fill="#10B981" opacity="0.5">
+    <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  
+  <defs>
+    <linearGradient id="oidc-grad1" x1="75" y1="75" x2="125" y2="125">
+      <stop offset="0%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#8B5CF6"/>
+    </linearGradient>
+    <linearGradient id="oidc-grad2" x1="0" y1="0" x2="200" y2="200">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#A78BFA"/>
+    </linearGradient>
+  </defs>
+</svg>

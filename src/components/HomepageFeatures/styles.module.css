@@ -1,11 +1,49 @@
 .features {
   display: flex;
   align-items: center;
-  padding: 2rem 0;
+  padding: 4rem 0;
   width: 100%;
+  background: var(--ifm-background-color);
 }
 
 .featureSvg {
   height: 200px;
   width: 200px;
+  margin-bottom: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.featureSvg:hover {
+  transform: scale(1.05);
+}
+
+/* Feature card styling */
+.features .col {
+  padding: 2rem 1rem;
+}
+
+.features h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--ifm-color-primary);
+}
+
+.features p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ifm-font-color-base);
+  opacity: 0.9;
+}
+
+/* Responsive */
+@media screen and (max-width: 996px) {
+  .features {
+    padding: 3rem 0;
+  }
+
+  .featureSvg {
+    height: 150px;
+    width: 150px;
+  }
 }
