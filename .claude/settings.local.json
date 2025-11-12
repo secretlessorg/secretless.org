@@ -15,7 +15,10 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(git reset:*)",
-      "Bash(bun run build:*)"
+      "Bash(bun run build:*)",
+      "WebFetch(domain:developer.hashicorp.com)",
+      "Bash(tree:*)",
+      "Bash(bun add:*)"
     ],
     "deny": [],
     "ask": []
