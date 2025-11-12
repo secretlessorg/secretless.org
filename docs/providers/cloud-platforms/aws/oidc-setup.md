@@ -1,13 +1,13 @@
 ---
 sidebar_position: 1
 title: AWS - Secretless Authentication
-description: Configure AWS to accept OIDC-based secretless authentication from external services without storing long-lived credentials
-keywords: [aws, oidc, secretless, authentication, iam, trust policy, web identity]
+description: Configure AWS to accept secretless authentication from external services without storing long-lived credentials using OIDC
+keywords: [aws, secretless, authentication, oidc, iam, trust policy, web identity]
 ---
 
 # AWS - Secretless Authentication
 
-Configure AWS to accept OpenID Connect (OIDC) authentication from external services, enabling secretless workflows without storing long-lived credentials.
+Configure AWS to accept secretless authentication from external services using OpenID Connect (OIDC), enabling workflows without storing long-lived credentials.
 
 ## Overview
 

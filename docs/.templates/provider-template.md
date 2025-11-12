@@ -1,8 +1,8 @@
 ---
 sidebar_position: 1
 title: [Provider Name] - Secretless Authentication
-description: Configure [Provider Name] to accept OIDC-based secretless authentication from external services
-keywords: [provider-name, oidc, secretless, authentication, trust policy]
+description: Configure [Provider Name] to accept secretless authentication from external services using OIDC
+keywords: [provider-name, secretless, authentication, oidc, trust policy]
 ---
 
 # [Provider Name] - Secretless Authentication

@@ -13,6 +13,40 @@ Secretless.cloud is a documentation website built to promote secretless authenti
 - MDX 3.0.0 (Markdown with JSX)
 - Node.js >= 20.0 required
 
+## Terminology Guidelines
+
+**CRITICAL: Promote "Secretless" over "OIDC"**
+
+The term "Secretless" should be used prominently throughout the site as the primary terminology for describing authentication without long-lived credentials. While OIDC (OpenID Connect) is the underlying implementation mechanism, it's a technical detail that's not intuitive for most users.
+
+**When to Use "Secretless":**
+- User-facing titles and headings
+- Marketing copy and introductions
+- High-level concept explanations
+- SEO-focused content (titles, descriptions, keywords)
+- Navigation labels and categories
+- General authentication workflow descriptions
+
+**When OIDC is Appropriate:**
+- Technical implementation details
+- Provider-specific configuration (e.g., "AWS IAM OIDC Provider")
+- When referring to specific protocols or standards
+- Technical documentation where precision is required
+- Code examples and API references
+- When the provider or tool specifically uses "OIDC" in their terminology
+
+**Examples:**
+- ✅ "Configure Secretless Authentication from GitHub Actions to AWS"
+- ❌ "Configure OIDC Authentication from GitHub Actions to AWS"
+- ✅ "Set up the AWS IAM OIDC provider to accept secretless authentication"
+- ✅ "This guide covers secretless workflows using OIDC tokens"
+
+**Content Review Checklist:**
+- Page titles should emphasize "Secretless" terminology
+- Introductions should lead with "Secretless" concepts
+- Technical sections can mention OIDC as the implementation mechanism
+- Keywords in frontmatter should prioritize "secretless" over "oidc"
+
 ## Development Commands
 
 ```bash
@@ -36,6 +70,32 @@ npm run swizzle        # Eject/customize Docusaurus theme components
 ```
 
 **Note:** Project uses bun.lock but works with npm, yarn, or bun.
+
+## Development Workflow
+
+**CRITICAL: Always Build Before Committing**
+
+Before creating any git commits, you MUST run the build process to ensure:
+- TypeScript compilation succeeds
+- No build errors are introduced
+- All dependencies resolve correctly
+- Generated static site builds successfully
+
+**Pre-commit Checklist:**
+1. Run `npm run build` (or `bun run build`)
+2. Verify build completes without errors
+3. Optionally run `npm run serve` to preview production build
+4. Review changes with `git diff`
+5. Create commit only after successful build
+
+**If Build Fails:**
+- Fix all TypeScript errors
+- Resolve any missing dependencies
+- Check for broken imports or invalid MDX syntax
+- Re-run build until it succeeds
+- Never commit broken code
+
+This ensures the main branch always remains in a deployable state and prevents CI/CD failures.
 
 ## Architecture
 

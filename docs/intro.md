@@ -1,8 +1,8 @@
 ---
 sidebar_position: 1
 title: Introduction to Secretless Workflows
-description: Learn how to eliminate long-lived credentials from your infrastructure using OIDC, just-in-time authentication, and temporary credentials
-keywords: [secretless, oidc, authentication, security, just-in-time auth, temporary credentials, no secrets]
+description: Learn how to eliminate long-lived credentials from your infrastructure using secretless authentication with OIDC and just-in-time credentials
+keywords: [secretless, authentication, security, oidc, just-in-time auth, temporary credentials, no secrets]
 ---
 
 # Introduction to Secretless Workflows

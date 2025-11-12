@@ -1,13 +1,13 @@
 ---
 sidebar_position: 1
-title: GitHub Actions OIDC Authentication
-description: Learn how GitHub Actions initiates secretless authentication using OpenID Connect (OIDC) to eliminate the need for storing long-lived credentials
-keywords: [github actions, oidc, openid connect, authentication, secretless, ci cd, workflows, jwt token]
+title: GitHub Actions - Secretless Authentication
+description: Learn how GitHub Actions enables secretless authentication to eliminate the need for storing long-lived credentials using OIDC tokens
+keywords: [github actions, secretless, authentication, oidc, openid connect, ci cd, workflows, jwt token]
 ---
 
-# GitHub Actions OIDC Authentication
+# GitHub Actions - Secretless Authentication
 
-GitHub Actions can authenticate with cloud providers using OpenID Connect (OIDC), eliminating the need to store long-lived credentials as secrets.
+GitHub Actions enables secretless authentication with cloud providers using OpenID Connect (OIDC), eliminating the need to store long-lived credentials as secrets.
 
 ## Overview
 

@@ -1,13 +1,13 @@
 ---
 sidebar_position: 1
 title: Azure Federated Identity Credentials
-description: Configure Microsoft Azure to accept OpenID Connect (OIDC) authentication from external services using federated identity credentials, eliminating the need for client secrets
-keywords: [azure, microsoft, entra id, federated identity, oidc, openid connect, authentication, secretless, github actions, gitlab ci, service principal]
+description: Configure Microsoft Azure for secretless authentication from external services using federated identity credentials, eliminating the need for client secrets
+keywords: [azure, microsoft, entra id, federated identity, secretless, authentication, oidc, openid connect, github actions, gitlab ci, service principal]
 ---
 
 # Azure Federated Identity Credentials
 
-Configure Azure to accept OIDC authentication from external systems like GitHub Actions, GitLab CI, and Buildkite without storing client secrets.
+Configure Azure for secretless authentication from external systems like GitHub Actions, GitLab CI, and Buildkite using OIDC without storing client secrets.
 
 ## Overview
 

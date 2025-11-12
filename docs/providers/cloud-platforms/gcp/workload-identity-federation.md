@@ -1,13 +1,13 @@
 ---
 sidebar_position: 1
 title: GCP Workload Identity Federation
-description: Configure Google Cloud Platform to accept OpenID Connect (OIDC) authentication from external services using Workload Identity Federation, eliminating the need for service account keys
-keywords: [gcp, google cloud, workload identity federation, oidc, openid connect, authentication, secretless, github actions, gitlab ci, service account]
+description: Configure Google Cloud Platform for secretless authentication from external services using Workload Identity Federation, eliminating the need for service account keys
+keywords: [gcp, google cloud, workload identity federation, secretless, authentication, oidc, openid connect, github actions, gitlab ci, service account]
 ---
 
 # GCP Workload Identity Federation
 
-Configure Google Cloud Platform to accept OIDC authentication from external systems like GitHub Actions, GitLab CI, and Buildkite without storing service account keys.
+Configure Google Cloud Platform for secretless authentication from external systems like GitHub Actions, GitLab CI, and Buildkite using OIDC without storing service account keys.
 
 ## Overview
 
