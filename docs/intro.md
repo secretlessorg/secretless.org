@@ -7,7 +7,7 @@ keywords: [secretless, oidc, authentication, security, just-in-time auth, tempor
 
 # Introduction to Secretless Workflows
 
-Welcome to **secretless.org** - your guide to eliminating long-lived credentials from your infrastructure and adopting secure, modern authentication practices.
+Welcome to **Secretless.cloud** - your guide to eliminating long-lived credentials from your infrastructure and adopting secure, modern authentication practices.
 
 ## What is Secretless Authentication?
 

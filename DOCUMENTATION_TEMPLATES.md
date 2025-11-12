@@ -1,6 +1,6 @@
 # Documentation Templates System
 
-This document explains the template system for secretsless.org documentation.
+This document explains the template system for Secretless.cloud documentation.
 
 ## Overview
 
