@@ -547,6 +547,6 @@ Outputs:
 ## Additional Resources
 
 - [Terraform Cloud Dynamic Credentials Overview](../initiators/infrastructure-as-code/terraform-cloud.md)
-- [AWS OIDC Provider Setup](../providers/aws/oidc-setup.md)
+- [AWS OIDC Provider Setup](../providers/cloud-platforms/aws/oidc-setup.md)
 - [HashiCorp Documentation: AWS Dynamic Credentials](https://developer.hashicorp.com/terraform/cloud-docs/workspaces/dynamic-provider-credentials/aws-configuration)
 - [AWS IAM OIDC Identity Providers](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc.html)

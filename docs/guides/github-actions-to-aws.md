@@ -702,7 +702,7 @@ jobs:
 
 ### Further Reading
 
-- [AWS Provider Documentation](../providers/aws/oidc-setup.md) - Detailed AWS configuration
+- [AWS Provider Documentation](../providers/cloud-platforms/aws/oidc-setup.md) - Detailed AWS configuration
 - [GitHub Actions Documentation](../initiators/ci-tools/github-actions.md) - Advanced workflow patterns
 - [AWS Security Best Practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html)
 

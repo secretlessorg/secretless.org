@@ -593,7 +593,7 @@ deny[msg] {
 ## Additional Resources
 
 - [Terraform Cloud Dynamic Credentials Overview](../initiators/infrastructure-as-code/terraform-cloud.md)
-- [Kubernetes OIDC Authentication Overview](../providers/kubernetes/overview.md)
+- [Kubernetes OIDC Authentication Overview](../providers/container-orchestration/kubernetes/overview.md)
 - [Kubernetes OIDC Authentication](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#openid-connect-tokens)
 - [EKS OIDC Provider Setup](https://docs.aws.amazon.com/eks/latest/userguide/authenticate-oidc-identity-provider.html)
 - [GKE Workload Identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity)

@@ -387,8 +387,8 @@ aws iam list-open-id-connect-providers
 
 ## Next Steps
 
-- **AWS Setup**: See [AWS OIDC Provider Setup](../../providers/aws/oidc-setup.md)
-- **GCP Setup**: See [GCP Workload Identity Federation](../../providers/gcp/workload-identity-federation.md)
+- **AWS Setup**: See [AWS OIDC Provider Setup](../../providers/cloud-platforms/aws/oidc-setup.md)
+- **GCP Setup**: See [GCP Workload Identity Federation](../../providers/cloud-platforms/gcp/workload-identity-federation.md)
 - **Complete Integration**: Follow [Buildkite to AWS Guide](../../guides/buildkite-to-aws.md)
 
 ## Additional Resources

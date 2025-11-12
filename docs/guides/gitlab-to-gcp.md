@@ -641,7 +641,7 @@ output "service_account_email" {
 
 - **Explore other integrations**: [GitLab to Azure](gitlab-to-azure.md)
 - **Learn more about GitLab CI**: [GitLab CI Initiator Documentation](../initiators/ci-tools/gitlab-ci.md)
-- **GCP deep dive**: [GCP Workload Identity Federation](../providers/gcp/workload-identity-federation.md)
+- **GCP deep dive**: [GCP Workload Identity Federation](../providers/cloud-platforms/gcp/workload-identity-federation.md)
 
 ## Additional Resources
 

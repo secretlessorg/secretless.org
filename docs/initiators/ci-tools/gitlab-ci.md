@@ -398,9 +398,9 @@ echo $GITLAB_OIDC_TOKEN | cut -d '.' -f2 | base64 -d | jq .sub
 
 ## Next Steps
 
-- **AWS Setup**: See [AWS OIDC Provider Setup](../../providers/aws/oidc-setup.md)
-- **GCP Setup**: See [GCP Workload Identity Federation](../../providers/gcp/workload-identity-federation.md)
-- **Azure Setup**: See [Azure Federated Credentials](../../providers/azure/federated-credentials.md)
+- **AWS Setup**: See [AWS OIDC Provider Setup](../../providers/cloud-platforms/aws/oidc-setup.md)
+- **GCP Setup**: See [GCP Workload Identity Federation](../../providers/cloud-platforms/gcp/workload-identity-federation.md)
+- **Azure Setup**: See [Azure Federated Credentials](../../providers/cloud-platforms/azure/federated-credentials.md)
 - **Complete Integration**: Follow [GitLab to GCP Guide](../../guides/gitlab-to-gcp.md)
 
 ## Additional Resources

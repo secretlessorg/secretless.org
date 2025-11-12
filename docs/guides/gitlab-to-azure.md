@@ -755,7 +755,7 @@ output "instructions" {
 
 - **Explore other integrations**: [GitLab to GCP](gitlab-to-gcp.md)
 - **Learn more about GitLab CI**: [GitLab CI Initiator Documentation](../initiators/ci-tools/gitlab-ci.md)
-- **Azure deep dive**: [Azure Federated Credentials](../providers/azure/federated-credentials.md)
+- **Azure deep dive**: [Azure Federated Credentials](../providers/cloud-platforms/azure/federated-credentials.md)
 
 ## Additional Resources
 

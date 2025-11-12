@@ -619,7 +619,7 @@ Also ensure the IAM role's max session duration allows this.
 
 ## Next Steps
 
-- **AWS Setup**: See [AWS OIDC Provider Setup](../../providers/aws/oidc-setup.md)
+- **AWS Setup**: See [AWS OIDC Provider Setup](../../providers/cloud-platforms/aws/oidc-setup.md)
 - **Complete Integration**: Follow the [GitHub Actions to AWS Integration Guide](../../guides/github-actions-to-aws.md)
 - **Other Cloud Providers**: Check documentation for GCP, Azure, and other providers
 
