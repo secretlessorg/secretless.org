@@ -1,0 +1,8 @@
+{
+  "label": "Providers",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Service providers that accept secretless authentication methods like OIDC and just-in-time auth. Learn how to configure AWS, GCP, Azure, Kubernetes, and other platforms to accept temporary credentials."
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "label": "AWS",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "Configure Amazon Web Services (AWS) to accept secretless authentication using OIDC, IAM roles, and temporary credentials."
+  }
+}

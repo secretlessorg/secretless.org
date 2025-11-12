@@ -1,0 +1,8 @@
+{
+  "label": "CI/CD Tools",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "Continuous Integration and Continuous Deployment tools that support secretless authentication. Configure GitHub Actions, GitLab CI, CircleCI, and other CI/CD platforms to use temporary credentials."
+  }
+}

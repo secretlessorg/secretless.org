@@ -1,0 +1,8 @@
+{
+  "label": "Initiators",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Services and tools that can initiate secretless authentication flows. Learn how to configure CI/CD tools, runtime environments, and development tools to use OIDC and temporary credentials."
+  }
+}
