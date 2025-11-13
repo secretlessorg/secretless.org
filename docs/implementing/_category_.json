@@ -1,0 +1,8 @@
+{
+  "label": "Implementing Secretless Auth",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Learn how to build applications that accept and validate OIDC tokens for secretless authentication"
+  }
+}

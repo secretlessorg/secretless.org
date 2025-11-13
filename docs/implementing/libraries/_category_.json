@@ -1,0 +1,8 @@
+{
+  "label": "Libraries & Tools",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Popular libraries and tools for OIDC token validation and authentication"
+  }
+}
