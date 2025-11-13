@@ -35,6 +35,8 @@ const config: Config = {
     locales: ['en'],
   },
 
+  plugins: ['docusaurus-plugin-google-adsense'],
+
   presets: [
     [
       'classic',
@@ -77,6 +79,9 @@ const config: Config = {
   themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
+    googleAdsense: {
+      dataAdClient: 'ca-pub-4346448737109361',
+    },
     colorMode: {
       respectPrefersColorScheme: true,
     },
