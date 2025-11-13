@@ -1,0 +1,8 @@
+{
+  "label": "Identity Providers",
+  "position": 10,
+  "link": {
+    "type": "generated-index",
+    "description": "Identity providers that issue OIDC tokens for your services and workloads"
+  }
+}

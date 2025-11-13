@@ -1,0 +1,8 @@
+{
+  "label": "Identity Platforms",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Using identity platforms as your application's authentication provider"
+  }
+}

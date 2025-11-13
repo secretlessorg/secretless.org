@@ -1,0 +1,8 @@
+{
+  "label": "Framework Guides",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Language and framework-specific guides for implementing OIDC authentication"
+  }
+}
