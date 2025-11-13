@@ -77,8 +77,21 @@ const config: Config = {
   },
 
   themeConfig: {
-    // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    // Social card for link previews
+    image: 'img/secretless-social-card.svg',
+    metadata: [
+      // Open Graph / Facebook
+      {name: 'og:type', content: 'website'},
+      {name: 'og:site_name', content: 'Secretless.cloud'},
+      {name: 'og:image:alt', content: 'Secretless.cloud - Secure authentication without secrets'},
+
+      // Twitter Card
+      {name: 'twitter:card', content: 'summary_large_image'},
+      {name: 'twitter:image:alt', content: 'Secretless.cloud - Secure authentication without secrets'},
+
+      // Additional SEO
+      {name: 'keywords', content: 'secretless, oidc, openid connect, authentication, aws, gcp, azure, kubernetes, github actions, gitlab ci, security, credentials, secrets management'},
+    ],
     googleAdsense: {
       dataAdClient: 'ca-pub-4346448737109361',
     },
