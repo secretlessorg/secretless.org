@@ -115,6 +115,16 @@ const config: Config = {
           label: 'Documentation',
         },
         {
+          to: '/about',
+          label: 'About',
+          position: 'left',
+        },
+        {
+          to: '/contact',
+          label: 'Contact',
+          position: 'left',
+        },
+        {
           href: 'https://github.com/secretlessorg/secretless.cloud',
           label: 'GitHub',
           position: 'right',
@@ -168,6 +178,27 @@ const config: Config = {
             {
               label: 'Contribute',
               href: 'https://github.com/secretlessorg/secretless.cloud/blob/main/CONTRIBUTING.md',
+            },
+          ],
+        },
+        {
+          title: 'Legal',
+          items: [
+            {
+              label: 'About Us',
+              to: '/about',
+            },
+            {
+              label: 'Contact',
+              to: '/contact',
+            },
+            {
+              label: 'Privacy Policy',
+              to: '/privacy',
+            },
+            {
+              label: 'Terms of Service',
+              to: '/terms',
             },
           ],
         },
