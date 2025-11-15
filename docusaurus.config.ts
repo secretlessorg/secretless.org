@@ -1,5 +1,5 @@
-import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
+import { themes as prismThemes } from 'prism-react-renderer';
+import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
@@ -52,6 +52,9 @@ const config: Config = {
         theme: {
           customCss: './src/css/custom.css',
         },
+        googleTagManager: {
+          containerId: 'GTM-TLPQMCVN',
+        },
       } satisfies Preset.Options,
     ],
   ],
@@ -81,16 +84,16 @@ const config: Config = {
     image: 'img/secretless-social-card.svg',
     metadata: [
       // Open Graph / Facebook
-      {name: 'og:type', content: 'website'},
-      {name: 'og:site_name', content: 'Secretless.cloud'},
-      {name: 'og:image:alt', content: 'Secretless.cloud - Secure authentication without secrets'},
+      { name: 'og:type', content: 'website' },
+      { name: 'og:site_name', content: 'Secretless.cloud' },
+      { name: 'og:image:alt', content: 'Secretless.cloud - Secure authentication without secrets' },
 
       // Twitter Card
-      {name: 'twitter:card', content: 'summary_large_image'},
-      {name: 'twitter:image:alt', content: 'Secretless.cloud - Secure authentication without secrets'},
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:image:alt', content: 'Secretless.cloud - Secure authentication without secrets' },
 
       // Additional SEO
-      {name: 'keywords', content: 'secretless, oidc, openid connect, authentication, aws, gcp, azure, kubernetes, github actions, gitlab ci, security, credentials, secrets management'},
+      { name: 'keywords', content: 'secretless, oidc, openid connect, authentication, aws, gcp, azure, kubernetes, github actions, gitlab ci, security, credentials, secrets management' },
     ],
     googleAdsense: {
       dataAdClient: 'ca-pub-4346448737109361',
