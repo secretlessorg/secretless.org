@@ -80,6 +80,12 @@ const config: Config = {
   },
 
   themeConfig: {
+    docs: {
+      sidebar: {
+        hideable: false,
+        autoCollapseCategories: false,
+      },
+    },
     // Social card for link previews
     image: 'img/secretless-social-card.svg',
     metadata: [

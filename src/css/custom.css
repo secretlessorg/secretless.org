@@ -205,3 +205,27 @@ button:focus {
   outline: 2px solid var(--ifm-color-primary);
   outline-offset: 2px;
 }
+
+/* Mobile Sidebar Fixes */
+/* Improve mobile sidebar accessibility and visibility */
+@media (max-width: 996px) {
+  /* Ensure sidebar toggle button is visible in the navbar on mobile */
+  .navbar__toggle {
+    display: inherit !important;
+  }
+
+  /* Ensure the doc sidebar is properly styled on mobile */
+  .theme-doc-sidebar-container {
+    border-right: 1px solid var(--ifm-toc-border-color);
+  }
+
+  /* Improve sidebar menu visibility when opened */
+  .theme-doc-sidebar-menu {
+    padding: 1rem;
+  }
+
+  /* Ensure mobile sidebar button in docs is visible */
+  button[class*="collapseSidebarButton"] {
+    display: flex !important;
+  }
+}
